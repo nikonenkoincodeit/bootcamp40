@@ -4,4 +4,17 @@
  */
 
 const hours = 14;
-const minutes = 24;
+const minutes = 0;
+let message;
+
+if (minutes === 0) {
+  message = `${hours} год.`;
+} else {
+  message = `${hours} год. ${minutes} хв.`;
+}
+
+// let message = minutes === 0 ? `${hours} год.` : `${hours} год. ${minutes} хв.`;
+
+// message = `${hours} год. ${minutes === 0 ? '' : `${minutes} хв.`}`;
+
+// console.log(message);

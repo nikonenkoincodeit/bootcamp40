@@ -8,4 +8,15 @@
 * більше 24 , виводи рядок "Overdue"
 */
 
-const hours = 10;
+// const hours = 24;
+// let message;
+
+// if (hours < 17) {
+//   message = 'Pending';
+// } else if (hours >= 17 && hours <= 24) {
+//   message = 'Express';
+// } else {
+//   message = 'Overdue';
+// }
+
+// console.log(message);

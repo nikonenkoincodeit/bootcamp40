@@ -4,3 +4,7 @@
  */
 
 let link = 'https://my-site.com/about';
+
+if (!link.endsWith('/')) {
+  console.log(link + '/');
+}
