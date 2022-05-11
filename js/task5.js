@@ -1,12 +1,7 @@
-// todo Форматування посилання (includes та логічне «І»)
+// todo Масиви та рядки
 /*
- * Напиши скрипт який перевіряє чи закінчується значення змінної link символом /. Якщо ні, додай у кінець значення link цей символ, але тільки в тому випадку, якщо в link є підрядок "my-site". Використовуй конструкцію if...else.
+ * Напиши скрипт який виводить у консоль усі слова рядка крім першого та останнього. Результуючий рядок не повинен починатися або закінчуватися пробілом. Скрипт повинен працювати для будь-якого рядка.
  */
 
-let link = 'https://somesite.com/about';
-
-if (link.includes('my-site') && !link.endsWith('/')) {
-  console.log(link + '/');
-} else {
-  console.log(link);
-}
+const string =
+  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia voluptas cupiditate excepturi,';
