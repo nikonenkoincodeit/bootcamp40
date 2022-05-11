@@ -8,7 +8,7 @@ const langs = [
   'web',
   'javascript',
   'c++',
-  'haskell', // TODO
+  'haskell',
   'php',
   'abb',
   'ruby',
