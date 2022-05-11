@@ -1,15 +1,8 @@
-// todo Пошук елемента
+// todo Форматування часу
 /*
- * Напиши скрипт пошуку найменшого числа в масиві. Код має працювати для будь-якого масиву чисел. Використовуйте цикл для вирішення задачі.
+ * Напиши функцію formatTime(minutes) яка переведе значення minutes (кількість хвилин) у рядок у форматі годин та хвилин HH:MM.
  */
 
-const numbers = [2, 17, 94, 1, 23, 37, 0, -5]; // -5
-let min = numbers[0];
-
-for (const number of numbers) {
-  if (min > number) {
-    min = number;
-  }
-}
-
-console.log(min);
+console.log(formatTime(70)); // "01:10"
+console.log(formatTime(450)); // "07:30"
+console.log(formatTime(1441)); // "24:01"
