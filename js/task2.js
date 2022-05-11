@@ -4,3 +4,11 @@
  */
 
 const values = '8 11';
+const arrayNum = values.split(' ');
+
+const a = Number(arrayNum[0]);
+const b = Number(arrayNum[arrayNum.length - 1]);
+
+const square = a * b;
+
+console.log(square);

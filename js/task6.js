@@ -4,3 +4,10 @@
  */
 
 const string = 'Welcome to the future';
+// const arrString = string.split('');
+// const reversedArr = arrString.reverse();
+// const parsedString = reversedArr.join('');
+
+// console.log(parsedString);
+
+console.log(string.split('').reverse().join(''));
