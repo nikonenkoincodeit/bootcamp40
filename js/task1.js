@@ -7,6 +7,18 @@
 * Індекс маси тіла необхідно округлити до однієї цифри після коми;
  */
 
-const bmi = calcBMI('88,3', '1.75');
+function calcBMI(weight, height) {
+  const normalizedWeight = weight.replace(',', '.');
+  const normalizeHeight = height.replace(',', '.');
+  let result;
 
+  result = (
+    parseFloat(normalizedWeight) /
+    parseFloat(normalizeHeight) ** 2
+  ).toFixed(1);
+
+  return result;
+}
+
+const bmi = calcBMI('88,3', '1.75');
 console.log(bmi); // 28.8
