@@ -1,24 +1,16 @@
-// todo Індекс маси тіла
+//todo Основи об'єктів
 /*
- * Напиши функцію calcBMI(weight, height) яка розраховує та повертає індекс маси тіла людини. Для цього необхідно розділити вагу в кілограмах на квадрат висоти людини за метри.
+ * Напиши скрипт, який, для об'єкта user, послідовно:
 
-* Вага та висота будуть спеціально передані як рядки. Нецілі числа можуть бути задані у вигляді 24.7 або 24,7, тобто як роздільник дробової частини може бути кома.
-
-* Індекс маси тіла необхідно округлити до однієї цифри після коми;
+* додає поле mood зі значенням 'happy'
+* замінює значення hobby на 'skydiving'
+* замінює значення premium на false
+* виводить вміст об'єкта user у форматі ключ: значення використовуючи Object.keys() і for...of
  */
 
-function calcBMI(weight, height) {
-  const normalizedWeight = weight.replace(',', '.');
-  const normalizeHeight = height.replace(',', '.');
-  let result;
-
-  result = (
-    parseFloat(normalizedWeight) /
-    parseFloat(normalizeHeight) ** 2
-  ).toFixed(1);
-
-  return result;
-}
-
-const bmi = calcBMI('88,3', '1.75');
-console.log(bmi); // 28.8
+const user = {
+  name: 'John',
+  age: 21,
+  hobby: 'css',
+  premium: true,
+};
