@@ -24,14 +24,28 @@ const account = {
    * Метод створює та повертає об'єкт транзакції.
    * Приймає суму та тип транзакції.
    */
-  createTransaction(amount, type) {},
+  createTransaction(amount, type) {
+    const transaction = {
+      id: this.transactions.length + 1,
+      amount,
+      type,
+    };
+
+    return transaction;
+  },
   /*
    * Метод, який відповідає за додавання суми до балансу.
    * Приймає суму транзакції.
    * Викликає createTransaction для створення об'єкта транзакції
    * після чого додає його в історію транзакцій
    */
-  deposit(amount) {},
+  deposit(amount) {
+    this.balance += amount;
+
+    const newTransaction = this.createTransaction(amount, TRANSACTIONS.DEPOSIT);
+
+    this.transactions.push(newTransaction);
+  },
   /*
    * Метод, що відповідає за зняття суми з балансу.
    * Приймає суму транзакції.
@@ -41,7 +55,21 @@ const account = {
    * Якщо amount більше ніж поточний баланс, виводь повідомлення
    * про те, що зняття такої суми не можливе, недостатньо коштів.
    */
-  withdraw(amount) {},
+  withdraw(amount) {
+    if (amount > this.getBalance()) {
+      console.log('Недостатньо коштів!');
+      return;
+    }
+
+    this.balance -= amount;
+
+    const newTransaction = this.createTransaction(
+      amount,
+      TRANSACTIONS.WITHDRAW,
+    );
+
+    this.transactions.push(newTransaction);
+  },
   /*
    * Метод повертає поточний баланс
    */
@@ -51,10 +79,48 @@ const account = {
   /*
    * Метод шукає та повертає об'єкт транзакції по id
    */
-  getTransactionDetails(id) {},
+  getTransactionDetails(id) {
+    for (const item of this.transactions) {
+      if (item.id === id) {
+        return item;
+      }
+    }
+
+    return 'Not found';
+  },
   /*
    * Метод повертає кількість коштів
    * певного типу транзакції з усієї історії транзакцій
    */
-  getTransactionTotal(type) {},
+  getTransactionTotal(type) {
+    let total = 0;
+
+    for (const item of this.transactions) {
+      if (item.type === type) {
+        total += item.amount;
+      }
+    }
+
+    return total;
+  },
 };
+
+account.deposit(200);
+account.deposit(2000);
+account.deposit(300);
+account.deposit(3000);
+account.withdraw(100);
+account.withdraw(10);
+account.withdraw(400);
+account.withdraw(400);
+account.withdraw(400);
+account.withdraw(400);
+account.withdraw(400);
+
+// console.log(account.getTransactionDetails(2));
+// console.log(account.getTransactionDetails(10));
+console.log(account.getTransactionTotal(TRANSACTIONS.DEPOSIT));
+console.log(account.getTransactionTotal(TRANSACTIONS.WITHDRAW));
+
+// console.table(account.transactions);
+console.log(account.getBalance());

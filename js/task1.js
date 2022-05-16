@@ -14,3 +14,17 @@ const user = {
   hobby: 'css',
   premium: true,
 };
+
+user.mood = 'happy';
+user.hobby = 'skydiving';
+user.premium = false;
+
+// console.table(user);
+
+for (const key of Object.keys(user)) {
+  console.log(`${key} - ${user[key]}`);
+}
+
+// for (const key of Object.entries(user)) {
+//   console.log(key[0], key[1]);
+// }

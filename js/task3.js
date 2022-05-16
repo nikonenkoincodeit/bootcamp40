@@ -9,3 +9,16 @@ const stones = [
   { name: 'Сапфір', price: 400, quantity: 7 },
   { name: 'Щебень', price: 200, quantity: 2 },
 ];
+
+function calcTotalPrice(array, stoneName) {
+  for (const item of array) {
+    if (item.name === stoneName) {
+      return item.price * item.quantity;
+    }
+  }
+
+  return 'Not found !';
+}
+
+console.log(calcTotalPrice(stones, 'Ізумруд'));
+console.log(calcTotalPrice(stones, 'Цегла'));

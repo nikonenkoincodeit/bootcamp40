@@ -8,3 +8,25 @@ const salaries = {
   Ann: 160,
   Pete: 130,
 };
+
+// let sum = 0;
+
+// for (const salary of Object.values(salaries)) {
+//   sum += salary;
+// }
+
+// console.log(sum);
+
+function getTotalSalary(object = {}) {
+  const numbers = Object.values(object);
+  let sum = 0;
+
+  for (const number of numbers) {
+    sum += number;
+  }
+
+  return sum;
+}
+
+console.log(getTotalSalary());
+console.log(getTotalSalary(salaries));
