@@ -4,7 +4,12 @@
  * Доповни функцію createContact(partialContact) так, щоб вона повертала новий об'єкт контакту з доданими властивостями id і createdAt, а також list зі значенням "default", якщо у partialContact немає такої властивості. */
 
 function createContact(partialContact) {
-  return partialContact;
+  return {
+    id: generateId(),
+    list: 'default',
+    ...partialContact,
+    createdAt: Date.now(),
+  };
 }
 
 console.log(
