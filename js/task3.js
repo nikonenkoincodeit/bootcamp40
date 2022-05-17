@@ -1,24 +1,32 @@
-//todo Масив об'єктів
+//todo Example 3 - Глибока деструктуризація
 /*
- * Напишіть ф-цію calcTotalPrice(array, stoneName), яка приймає масив об'єктів та рядок з назвою каменю. Ф-ція рахує і повертає загальну вартість каміння з таким ім'ям, ціною та кількістю з об'єкта
+ * Перепиши функцію так, щоб вона приймала один об'єкт параметрів замість набору незалежних аргументів.
  */
 
-const stones = [
-  { name: 'Ізумруд', price: 1300, quantity: 4 },
-  { name: 'Бриліант', price: 2700, quantity: 3 },
-  { name: 'Сапфір', price: 400, quantity: 7 },
-  { name: 'Щебень', price: 200, quantity: 2 },
-];
+// Було
+// console.log(getBotReport('Cyberdyne Systems', 150, 50));
 
-function calcTotalPrice(array, stoneName) {
-  for (const item of array) {
-    if (item.name === stoneName) {
-      return item.price * item.quantity;
-    }
-  }
+// Очікується
+// console.log(
+//   getBotReport({
+//     companyName: 'Cyberdyne Systems',
+//     stock: {
+//       repair: 150,
+//       defense: 50,
+//       key: 78,
+//     },
+//   }),
+// );
 
-  return 'Not found !';
-}
-
-console.log(calcTotalPrice(stones, 'Ізумруд'));
-console.log(calcTotalPrice(stones, 'Цегла'));
+// console.log(
+//   getBotReport({
+//     companyName: 'ATB',
+//     stock: {
+//       repair: 50,
+//       defense: 50,
+//       key: 578,
+//       oil: 78,
+//       bread: 578,
+//     },
+//   }),
+// );
