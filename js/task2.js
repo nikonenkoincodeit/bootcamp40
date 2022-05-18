@@ -11,12 +11,29 @@ const TRANSACTION_LIMIT = 1000;
 
 const account = {
   name: 'John',
-  balance: 1000,
+  balance: 2000,
+
+  withdraw(amount, onSuccess, onError) {
+    if (amount > TRANSACTION_LIMIT || amount > this.balance) {
+      onError('Сума на рахунку не дозволяє виконати транзакцію');
+    } else {
+      onSuccess('Операція виконана успішно');
+    }
+  },
+
+  deposit(amount, onSuccess, onError) {
+    if (amount > TRANSACTION_LIMIT || amount <= 0) {
+      onError('Не можливо виконати транзакцію');
+    } else {
+      onSuccess('Операція виконана успішно');
+    }
+  },
 };
 
 function handleSuccess(message) {
-  console.log(`✅ Success! ${message}`);
+  console.warn(`✅ Success! ${message}`);
 }
+
 function handleError(message) {
   console.error(`❌ Error! ${message}`);
 }
@@ -25,3 +42,4 @@ account.withdraw(2000, handleSuccess, handleError);
 account.withdraw(600, handleSuccess, handleError);
 account.deposit(1600, handleSuccess, handleError);
 account.deposit(600, handleSuccess, handleError);
+account.deposit(0, handleSuccess, handleError);

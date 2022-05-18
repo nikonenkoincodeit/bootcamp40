@@ -1,16 +1,18 @@
 // todo Метод forEach
 
 /*
- * Виконайте рефакторинг коду, використовуючи метод дляEach і стрілочні функції.
+ * Виконайте рефакторинг коду, використовуючи метод для Each і стрілочні функції.
  */
 
-function calculateAverage(...args) {
+const calculateAverage = (...args) => {
   let total = 0;
-  for (let i = 0; i < args.length; i++) {
-    total += args[i];
-  }
+
+  args.forEach(number => {
+    total += number;
+  });
+
   return total / args.length;
-}
+};
 
 console.log(calculateAverage(1, 2, 3, 4)); // 2.5
 console.log(calculateAverage(14, 8, 2)); // 8

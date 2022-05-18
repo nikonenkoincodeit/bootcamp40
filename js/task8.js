@@ -4,13 +4,14 @@
  * Виконайте рефакторинг коду, використовуючи метод для Each і стрілочні функції.
  */
 
-function printContactsInfo({ names, phones }) {
-  const nameList = names.split(',');
-  const phoneList = phones.split(',');
-  for (let i = 0; i < nameList.length; i += 1) {
-    console.log(`${nameList[i]}: ${phoneList[i]}`);
-  }
-}
+const printContactsInfo = ({ names, phones }) => {
+  const namesList = names.split(',');
+  const phonesList = phones.split(',');
+
+  namesList.forEach((name, index) => {
+    console.log(`${name} - ${phonesList[index]}`);
+  });
+};
 
 printContactsInfo({
   names: 'Jacob,William,Solomon,Artemis',

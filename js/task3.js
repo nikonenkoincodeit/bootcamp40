@@ -3,6 +3,16 @@
  * Напишіть функцію each(array, callback), яка першим параметром очікує масив, а другим - функцію, яка застосовується до кожного елемента масиву. Функція each повинна повернути новий масив, елементами якого будуть результати виклику колбека.
  */
 
+function each(array, callback) {
+  const newArray = [];
+
+  for (const number of array) {
+    newArray.push(callback(number));
+  }
+
+  return newArray;
+}
+
 console.log(
   each([64, 49, 36, 25, 16], function (value) {
     return value * 2;
