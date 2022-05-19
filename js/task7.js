@@ -1,14 +1,9 @@
-// todo Метод forEach
+// todo Метод sort
+
+import { cars } from './cars.js';
 
 /*
- * Виконайте рефакторинг коду, використовуючи метод для Each і стрілочні функції.
+ * Нехай функція sortByAscendingAmount повертає новий масив автомобілів відсортований за збільшенням значення властивості amount.
  */
 
-const logItems = items => {
-  items.forEach((item, index) => {
-    console.log(`${index + 1} - ${item}`);
-  });
-};
-
-logItems(['Mango', 'Poly', 'Ajax']);
-logItems(['🍎', '🍇', '🍑', '🍌', '🍋']);
+console.table(sortByAscendingAmount(cars));
