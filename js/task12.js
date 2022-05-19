@@ -1,9 +1,13 @@
 // todo Ланцюги методів
 
-import { cars } from './cars.js';
+import { vehicles } from './vehicles.js';
+console.table(vehicles);
 
 /*
  * Нехай функція getSortedCarsOnSale повертає масив автомобілів на розпродажі (властивість onSale), відсортованих за зростанням ціни.
  */
 
-console.table(getSortedCarsOnSale(cars));
+const getSortedCarsOnSale = cars =>
+  cars.filter(({ onSale }) => onSale).sort((a, b) => a.price - b.price);
+
+console.table(getSortedCarsOnSale(vehicles));

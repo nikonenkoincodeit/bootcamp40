@@ -1,4 +1,4 @@
-export const cars = [
+export const vehicles = [
   {
     make: 'Honda',
     model: 'CR-V',

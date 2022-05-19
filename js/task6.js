@@ -1,6 +1,9 @@
 // todo Метод find
 
-import { cars } from './cars.js';
+import { vehicles } from './vehicles.js';
+console.table(vehicles);
 
-console.log(getCarByModel(cars, 'F-150'));
-console.log(getCarByModel(cars, 'CX-9'));
+const getCarByModel = (cars, model) => cars.find(car => car.model === model);
+
+console.log(getCarByModel(vehicles, 'F-150'));
+console.log(getCarByModel(vehicles, 'CX-9'));

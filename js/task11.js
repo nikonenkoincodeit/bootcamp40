@@ -1,9 +1,14 @@
 // todo Ланцюги методів
 
-import { cars } from './cars.js';
+import { vehicles } from './vehicles.js';
+console.table(vehicles);
 
 /*
- * Нехай функція getAvailableCarNames повертає масив моделей автомобілів, але тільки тих, що зараз на розпродажі.
+ * Нехай функція getModelsOnSale повертає масив моделей автомобілів, але тільки тих, що зараз на розпродажі.
  */
 
-console.table(getModelsOnSale(cars));
+const getModelsOnSale = cars => {
+  return cars.filter(({ onSale }) => onSale).map(({ model }) => model);
+};
+
+console.table(getModelsOnSale(vehicles));
