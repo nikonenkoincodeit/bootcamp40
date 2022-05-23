@@ -1,17 +1,19 @@
-// todo Метод filter
+// todo Калькулятор
 
-import { vehicles } from './vehicles.js';
-console.table(vehicles);
 /*
- * Нехай функція filterByPrice повертає масив автомобілів ціна яких менша за значення параметра threshold.
+ * Створіть об'єкт calculator із трьома методами:
+
+* read(firstValue, secondValue)- приймає два значення та зберігає їх як властивості об'єкта.
+* add() - повертає суму збережених значень.
+* mult() - перемножує збережені значення та повертає результат.
  */
 
-// const filterByPrice = (cars, threshold) => {
-//   return cars.filter(car => car.price < threshold);
-// };
+const calculator = {};
 
-const filterByPrice = (cars, threshold) =>
-  cars.filter(({ price }) => price < threshold);
+calculator.read(10, 20);
+console.log(calculator.add());
+console.log(calculator.mult());
 
-console.table(filterByPrice(vehicles, 30000));
-console.table(filterByPrice(vehicles, 25000));
+calculator.read(50, 30);
+console.log(calculator.add());
+console.log(calculator.mult());

@@ -1,12 +1,17 @@
-// todo Метод filter
+// todo call() apply()
 
-import { vehicles } from './vehicles.js';
-console.table(vehicles);
 /*
- * Нехай функція getCarsWithType повертає масив автомобілів, тип яких збігається зі значенням параметра type.
+ * Створіть функцію hostGuests яка поверне ім'я будинку та гостей у ньому
+ * Викличте її за допомогою call і apply поставивши контекст і гостей як аргумент
  */
 
-const getCarsWithType = (cars, type) => cars.filter(car => car.type === type);
+const guests = ['Anna', 'Jack', 'Jimmy'];
 
-console.table(getCarsWithType(vehicles, 'suv'));
-console.table(getCarsWithType(vehicles, 'sedan'));
+const place1 = {
+  house: 'Palace',
+};
+const place2 = {
+  house: 'Barn',
+};
+
+// Anna, Jack, Jimmy, John are staying in Palace

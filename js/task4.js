@@ -1,15 +1,7 @@
-// todo  Метод filter
+// todo bind()
 
-import { vehicles } from './vehicles.js';
-console.table(vehicles);
 /*
- * Нехай функція getCarsWithDiscount повертає масив автомобілів властивість onSale яких true.
+ * Створіть метод counter який буде з this брати "i" і збільшувати його на одиницю. Після повертати "i".
+ * Використовуйте замикання та bind, щоб встановити змінній "i" різні значення
+ * Виведіть результат у консоль
  */
-
-const getCarsWithDiscount = cars => {
-  return cars.filter(car => car.onSale !== true);
-};
-
-// const getCarsWithDiscount = cars => cars.filter(({ onSale }) => !onSale);
-
-console.table(getCarsWithDiscount(vehicles));
