@@ -1,31 +1,29 @@
-// todo bind()
+// todo Нотатки
 
 /*
- * Створіть метод counter який буде з this брати "i" і збільшувати його на одиницю. Після повертати "i".
- * Використовуйте замикання та bind, щоб встановити змінній "i" різні значення
- * Виведіть результат у консоль
- */
-
-function counter() {
-  return function () {
-    this.i += 1;
-
-    return this.i;
-  };
+ * Напиши клас Notes, який управляє колекцією нотаток у властивості items. Нотатка -  це об'єкт із властивостями text та priority. Додай класу статичну властивість Priority, у якій зберігатиметься об'єкт із пріоритетами.
+{
+  LOW: 'low',
+  NORMAL: 'normal',
+  HIGH: 'high'
 }
 
-const objA = {
-  i: 1,
-};
+ * Додай методи addNote(note), removeNote(text) та updatePriority(text, newPriority).
+ */
 
-const objB = {
-  i: 400,
-};
+class Notes {}
 
-const counter1 = counter().bind(objA);
-const counter2 = counter().bind(objB);
+// const myNotes = new Notes();
 
-console.log(counter1());
-console.log(counter1());
-console.log(counter2());
-console.log(counter2());
+// myNotes.addNote({ text: 'Моя первая заметка', priority: Notes.Priority.LOW });
+
+// myNotes.addNote({
+//   text: 'Моя вторая заметка',
+//   priority: Notes.Priority.NORMAL,
+// });
+
+// myNotes.removeNote('Моя первая заметка');
+// myNotes.removeNote('hahaha');
+
+// myNotes.updatePriority('Моя вторая заметка', Notes.Priority.HIGH);
+// console.table(myNotes.items);

@@ -1,34 +1,51 @@
-// todo Майстерня коштовностей
+// todo Блогер
 
 /*
- * Напишіть метод calcTotalPrice(stoneName), який приймає назву каменю та розраховує та повертає загальну вартість каменів з таким ім'ям, ціною та кількістю з властивості stones.
+ * Напиши клас Blogger для створення об'єкта блогера з наступними властивостями:
+
+* email - пошта, рядок
+* age - вік, число
+* numberOfPosts - кількість постів, число
+* topics - масив тем, на яких спеціалізується блогер
+
+* Клас очікує один параметр - об'єкт налаштувань з однойменними властивостями.
+
+* Додай метод getInfo(), який повертає рядок: User ${пошта} is ${вік} years old and has ${кількість постів} posts.
+
+* Додай метод updatePostCount(value), який у параметрі value приймає кількість постів, які потрібно додати користувачеві.
  */
 
-const chopShop = {
-  stones: [
-    { name: 'Emerald', price: 1300, quantity: 4 },
-    { name: 'Diamond', price: 2700, quantity: 3 },
-    { name: 'Sapphire', price: 1400, quantity: 7 },
-    { name: 'Ruby', price: 800, quantity: 2 },
-  ],
+class Blogger {}
 
-  calcTotalPrice(stoneName) {
-    const findElement = this.stones.find(({ name }) => name === stoneName);
+// const mango = new Blogger({
+//   name: 'mango@mail.com',
+//   age: 24,
+//   numberOfPosts: 20,
+//   topics: ['tech', 'cooking'],
+// });
 
-    // if (!findElement) {
-    //   return `${stoneName} not found!`;
-    // }
+// console.log(mango.getInfo());
+// mango.updatePostCount(5);
+// console.log(mango.getInfo());
 
-    // return findElement.price * findElement.quantity;
+// const poly = new Blogger({
+//   name: 'poly@mail.com',
+//   age: 19,
+//   numberOfPosts: 17,
+//   topics: ['sports', 'gaming', 'health'],
+// });
 
-    return findElement
-      ? findElement.price * findElement.quantity
-      : `${stoneName} not found!`;
-  },
-};
+// console.log(poly.getInfo());
+// poly.updatePostCount(4);
+// console.log(poly.getInfo());
 
-console.log(chopShop.calcTotalPrice('Emerald'));
-console.log(chopShop.calcTotalPrice('Diamond'));
-console.log(chopShop.calcTotalPrice('Sapphire'));
-console.log(chopShop.calcTotalPrice('Ruby'));
-console.log(chopShop.calcTotalPrice('Graphite'));
+// const john = new Blogger({
+//   name: 'john@mail.com',
+//   age: 39,
+//   numberOfPosts: 100,
+//   topics: ['politics', 'military', 'ballet'],
+// });
+
+// console.log(john.getInfo());
+// john.updatePostCount(44);
+// console.log(john.getInfo());
