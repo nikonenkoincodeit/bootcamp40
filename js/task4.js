@@ -11,19 +11,59 @@
  * Додай методи addNote(note), removeNote(text) та updatePriority(text, newPriority).
  */
 
-class Notes {}
+class Notes {
+  static Priority = {
+    LOW: 'low',
+    NORMAL: 'normal',
+    HIGH: 'high',
+  };
 
-// const myNotes = new Notes();
+  constructor(items) {
+    this.items = items ?? [];
+  }
 
-// myNotes.addNote({ text: 'Моя первая заметка', priority: Notes.Priority.LOW });
+  addNote(note) {
+    this.items.push(note);
+  }
 
-// myNotes.addNote({
-//   text: 'Моя вторая заметка',
-//   priority: Notes.Priority.NORMAL,
-// });
+  removeNote(text) {
+    const element = this.findElement(text);
 
-// myNotes.removeNote('Моя первая заметка');
-// myNotes.removeNote('hahaha');
+    if (!element) {
+      console.log(`${text} not found!`);
+    } else {
+      this.items = this.items.filter(item => item.text !== text);
+    }
+  }
 
-// myNotes.updatePriority('Моя вторая заметка', Notes.Priority.HIGH);
-// console.table(myNotes.items);
+  updatePriority(text, newPriority) {
+    const element = this.findElement(text);
+
+    if (!element) {
+      console.log(`${text} not found!`);
+    } else {
+      element.priority = newPriority;
+    }
+  }
+
+  findElement(element) {
+    return this.items.find(item => item.text === element);
+  }
+}
+
+const myNotes = new Notes();
+
+myNotes.addNote({ text: 'Моя первая заметка', priority: Notes.Priority.LOW });
+
+myNotes.addNote({
+  text: 'Моя вторая заметка',
+  priority: Notes.Priority.NORMAL,
+});
+
+myNotes.removeNote('Моя первая заметка');
+myNotes.removeNote('hahaha');
+
+myNotes.updatePriority('Моя вторая заметка', Notes.Priority.HIGH);
+
+myNotes.updatePriority('Моя четвертая заметка', Notes.Priority.HIGH);
+console.table(myNotes.items);

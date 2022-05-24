@@ -10,10 +10,35 @@
 * removeItem(item) - отримує товар і, якщо є, видаляє його з поточних.
  */
 
-class Storage {}
+class Storage {
+  constructor(items = []) {
+    this.items = items;
+  }
 
-// const storage = new Storage(['🍎', '🍋', '🍇', '🍑']);
+  getItems() {
+    return this.items;
+  }
 
-// storage.addItem('🍌');
-// storage.removeItem('🍋');
-// storage.removeItem('🔆');
+  addItem(item) {
+    this.items.push(item);
+  }
+
+  removeItem(item) {
+    const findItem = this.items.find(element => element === item);
+
+    if (!findItem) {
+      console.log(`${item} not found !`);
+      return;
+    }
+
+    this.items = this.items.filter(element => element !== findItem);
+  }
+}
+
+const storage = new Storage(['🍎', '🍋', '🍇', '🍑']);
+
+storage.addItem('🍌');
+storage.removeItem('🍋');
+storage.removeItem('🔆');
+
+console.log(storage.getItems());
