@@ -4,11 +4,32 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson-10</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Lesson-06</title>
   </head>
   <body>
-    <button type="button" class="btn1">відкрити</button>
-    <button type="button" class="btn2">закрити</button>
-    <script src="./js/task5.js" type="module"></script>
+    <div class="container">
+      <div class="wrapper">
+        <form class="form">
+          <label class="label">
+            Сума операції
+            <input class="input" type="number" name="amount" />
+          </label>
+
+          <button class="button" type="submit">Додати</button>
+        </form>
+
+        <div class="main">
+          <h3 class="total">
+            Загальний баланс:
+            <span class="total-amount">0</span>
+          </h3>
+        </div>
+      </div>
+
+      <ul class="list"></ul>
+    </div>
+
+    <script src="/js/index.js" type="module"></script>
   </body>
 </html>
