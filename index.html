@@ -10,10 +10,10 @@
   <body>
     <div class="container">
       <div class="wrapper">
-        <form class="form">
+        <form class="form js-form">
           <label class="label">
             Сума операції
-            <input class="input" type="number" name="amount" />
+            <input class="input" type="number" name="amount" required />
           </label>
 
           <button class="button" type="submit">Додати</button>
@@ -22,12 +22,12 @@
         <div class="main">
           <h3 class="total">
             Загальний баланс:
-            <span class="total-amount">0</span>
+            <span class="total-amount js-total-amount">0</span>
           </h3>
         </div>
       </div>
 
-      <ul class="list"></ul>
+      <ul class="list js-list"></ul>
     </div>
 
     <script src="/js/index.js" type="module"></script>

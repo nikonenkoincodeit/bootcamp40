@@ -1,28 +1,30 @@
-const Transaction = {
-  DEPOSIT: 'deposit',
-  WITHDRAW: 'withdraw',
-};
+// Imports
+import { account } from './account.js';
 
-const account = {
-  balance: 0,
-  transactions: [],
+// Variables
+const form = document.querySelector('.js-form');
+const totalAmount = document.querySelector('.js-total-amount');
+const list = document.querySelector('.js-list');
 
-  getBalance() {
-    return this.balance;
-  },
+// Listeners
+form.addEventListener('submit', onSubmit);
 
-  createTransaction(amount, type) {
-    return {
-      id: this.transactions.length + 1,
-      type,
-      amount,
-    };
-  },
+// Functions
+function onSubmit(event) {
+  event.preventDefault();
 
-  deposit(amount) {
-    this.balance += amount;
+  const inputValue = parseInt(form.elements.amount.value);
 
-    const newTransaction = this.createTransaction(amount, Transaction.DEPOSIT);
-    this.transactions.push(newTransaction);
-  },
-};
+  account.deposit(inputValue);
+  totalAmount.textContent = account.balance;
+
+  const item = document.createElement('li');
+  item.classList.add('item');
+  item.textContent = inputValue;
+
+  list.append(item);
+
+  // list.insertAdjacentHTML('beforeend', `<li class="item">${inputValue}</li>`);
+
+  form.reset();
+}
