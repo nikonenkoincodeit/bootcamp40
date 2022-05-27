@@ -36,18 +36,18 @@
         </a>
       </div>
     </nav>
-
     <!-- Hero -->
     <section class="py-5">
       <div class="container">
         <div class="row">
+          <div id="liveAlertPlaceholder"></div>
+
           <div class="col text-center">
             <h1 class="display-6">Особистий кабінет</h1>
           </div>
         </div>
       </div>
     </section>
-
     <!-- Balance -->
     <section class="py-4">
       <div class="container">
@@ -56,32 +56,31 @@
         >
           <div class="col-3 text-center">
             <h3 class="h3">Баланс</h3>
-            <p class="fs-3 fw-bold text-secondary js-total-balance">
+            <p class="fs-3 fw-bold mb-0 text-secondary js-total-balance">
               0 &#8372;
             </p>
           </div>
           <div class="col-3 text-center">
             <h3 class="h3">Доходи</h3>
-            <p class="fs-3 text-success fw-bold js-total-deposit">
+            <p class="fs-3 text-success mb-0 fw-bold js-total-deposit">
               + 0 &#8372;
             </p>
           </div>
           <div class="col-3 text-center">
             <h3 class="h3">Витрати</h3>
-            <p class="fs-3 text-danger fw-bold js-total-withdraw">
+            <p class="fs-3 text-danger mb-0 fw-bold js-total-withdraw">
               - 0 &#8372;
             </p>
           </div>
         </div>
       </div>
     </section>
-
     <!-- Transaction -->
     <section class="py-4">
       <div class="container">
         <div class="row gx-5">
+          <!-- Form -->
           <div class="col p-6 text-center">
-            <!-- Form -->
             <h3 class="h3 mb-3">Нова транзакція</h3>
             <form id="form" class="mt-n3 js-form">
               <div class="input-group input-group-lg mb-3">
@@ -118,7 +117,6 @@
               </div>
             </form>
           </div>
-
           <!-- Історія витрат -->
           <div class="col p-6 text-center mb-3">
             <h3 class="h3 mb-3">Історія витрат</h3>
@@ -126,7 +124,10 @@
               class="list-group list-group-flush mt-n3 overflow-auto js-history-list"
               style="max-height: 180px"
             >
-              <li
+              <li class="text-center fst-italic">
+                Ваша історія витрат порожня
+              </li>
+              <!-- <li
                 class="list-group-item d-flex align-items-center justify-content-between text-capitalize border border-1 rounded px-4 py-2 text-dark bg-opacity-10 mb-3 bg-danger"
               >
                 <span class="fs-5">Operation</span>
@@ -137,13 +138,18 @@
               >
                 <span class="fs-5">Operation</span>
                 <span class="fs-5">Amount &#8372;</span>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
       </div>
     </section>
 
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
     <script src="/js/index.js" type="module"></script>
   </body>
 </html>
