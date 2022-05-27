@@ -11,19 +11,46 @@ export const account = {
     return this.balance;
   },
 
-  createTransaction(amount, type) {
+  createTransaction(amount, type, operation) {
     return {
-      id: this.transactions.length + 1,
+      id: generateId(),
       type,
       amount,
+      operation,
     };
   },
 
-  deposit(amount) {
+  deposit({ amount, operation }) {
     this.balance += amount;
 
-    const newTransaction = this.createTransaction(amount, Transaction.DEPOSIT);
+    const newTransaction = this.createTransaction(
+      amount,
+      Transaction.DEPOSIT,
+      operation,
+    );
 
     this.transactions.push(newTransaction);
   },
+
+  withdraw({ amount, operation }) {
+    this.balance -= amount;
+
+    const newTransaction = this.createTransaction(
+      amount,
+      Transaction.WITHDRAW,
+      operation,
+    );
+
+    this.transactions.push(newTransaction);
+  },
+
+  getTransactionTotal(type) {},
 };
+
+function generateId() {
+  return (
+    String.fromCharCode(Math.floor(Math.random() * 26) + 97) +
+    Math.random().toString(16).slice(2) +
+    Date.now().toString(16).slice(4)
+  );
+}

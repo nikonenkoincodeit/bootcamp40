@@ -1,34 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./css/style.css" />
-    <title>Lesson-06</title>
+    <title>Гаманець</title>
   </head>
   <body>
-    <div class="container">
-      <div class="wrapper">
-        <form class="form js-form">
-          <label class="label">
-            Сума операції
-            <input class="input" type="number" name="amount" required />
-          </label>
+    <!-- Header -->
+    <nav class="navbar fixed-top navbar-light py-3">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center m-0" href="#">
+          <svg
+            class="d-inline-block align-text-top me-3"
+            viewBox="0 0 20 20"
+            width="30"
+          >
+            <path
+              d="M17.431,2.156h-3.715c-0.228,0-0.413,0.186-0.413,0.413v6.973h-2.89V6.687c0-0.229-0.186-0.413-0.413-0.413H6.285c-0.228,0-0.413,0.184-0.413,0.413v6.388H2.569c-0.227,0-0.413,0.187-0.413,0.413v3.942c0,0.228,0.186,0.413,0.413,0.413h14.862c0.228,0,0.413-0.186,0.413-0.413V2.569C17.844,2.342,17.658,2.156,17.431,2.156 M5.872,17.019h-2.89v-3.117h2.89V17.019zM9.587,17.019h-2.89V7.1h2.89V17.019z M13.303,17.019h-2.89v-6.651h2.89V17.019z M17.019,17.019h-2.891V2.982h2.891V17.019z"
+            />
+          </svg>
+          <p class="fs-3 mb-0 fw-bolder">Гаманець</p>
+        </a>
+      </div>
+    </nav>
 
-          <button class="button" type="submit">Додати</button>
-        </form>
-
-        <div class="main">
-          <h3 class="total">
-            Загальний баланс:
-            <span class="total-amount js-total-amount">0</span>
-          </h3>
+    <!-- Hero -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col text-center">
+            <h1 class="display-6">Особистий кабінет</h1>
+          </div>
         </div>
       </div>
+    </section>
 
-      <ul class="list js-list"></ul>
-    </div>
+    <!-- Balance -->
+    <section class="py-4">
+      <div class="container">
+        <div
+          class="row justify-content-between border border-1 rounded py-3 bg-light bg-gradient"
+        >
+          <div class="col-3 text-center">
+            <h3 class="h3">Баланс</h3>
+            <p class="fs-3 fw-bold text-secondary js-total-balance">
+              0 &#8372;
+            </p>
+          </div>
+          <div class="col-3 text-center">
+            <h3 class="h3">Доходи</h3>
+            <p class="fs-3 text-success fw-bold js-total-deposit">
+              + 0 &#8372;
+            </p>
+          </div>
+          <div class="col-3 text-center">
+            <h3 class="h3">Витрати</h3>
+            <p class="fs-3 text-danger fw-bold js-total-withdraw">
+              - 0 &#8372;
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transaction -->
+    <section class="py-4">
+      <div class="container">
+        <div class="row gx-5">
+          <div class="col p-6 text-center">
+            <!-- Form -->
+            <h3 class="h3 mb-3">Нова транзакція</h3>
+            <form id="form" class="mt-n3 js-form">
+              <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-lg"
+                  >&</span
+                >
+                <input
+                  type="text"
+                  class="form-control js-operation-name"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-lg"
+                  placeholder="Тип операції"
+                  name="operation"
+                  required
+                />
+              </div>
+              <div class="input-group input-group-lg">
+                <span class="input-group-text" id="inputGroup-sizing">$</span>
+                <input
+                  type="number"
+                  class="form-control js-operation-amount"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-lg"
+                  placeholder="Сума операції"
+                  name="amount"
+                  required
+                />
+              </div>
+
+              <div class="d-grid gap-2">
+                <button class="btn btn-primary btn-lg mt-3" type="submit">
+                  Додати операцію
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Історія витрат -->
+          <div class="col p-6 text-center mb-3">
+            <h3 class="h3 mb-3">Історія витрат</h3>
+            <ul
+              class="list-group list-group-flush mt-n3 overflow-auto js-history-list"
+              style="max-height: 180px"
+            >
+              <li
+                class="list-group-item d-flex align-items-center justify-content-between text-capitalize border border-1 rounded px-4 py-2 text-dark bg-opacity-10 mb-3 bg-danger"
+              >
+                <span class="fs-5">Operation</span>
+                <span class="fs-5">Amount &#8372;</span>
+              </li>
+              <li
+                class="list-group-item d-flex align-items-center justify-content-between text-capitalize border border-1 rounded px-4 py-2 text-dark bg-opacity-10 mb-3 bg-success"
+              >
+                <span class="fs-5">Operation</span>
+                <span class="fs-5">Amount &#8372;</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <script src="/js/index.js" type="module"></script>
   </body>
