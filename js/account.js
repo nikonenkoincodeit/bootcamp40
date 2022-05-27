@@ -11,19 +11,10 @@ export const account = {
     return this.balance;
   },
 
-  generateId() {
-    // генерує ідентифікатор
-    return (
-      String.fromCharCode(Math.floor(Math.random() * 26) + 97) +
-      Math.random().toString(16).slice(2) +
-      Date.now().toString(16).slice(4)
-    );
-  },
-
   createTransaction(amount, type, operation) {
     // створює транзакцію
     return {
-      id: this.generateId(),
+      id: this.transactions.length + 1,
       type,
       amount,
       operation,

@@ -39,6 +39,7 @@ function handlerSubmit(event) {
   totalDeposit.textContent = account.getTransactionTotal(Transaction.DEPOSIT);
   totalWithdraw.textContent = account.getTransactionTotal(Transaction.WITHDRAW);
 
+  console.log(account.transactions);
   // рендер транзакцій
   renderMarkup();
 
