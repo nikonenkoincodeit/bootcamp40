@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <header class="py-3 px-5 shadow rounded">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <nav class="navbar">
+            <input
+              class="form-control js-input"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section class="py-5">
+      <div class="container">
+        <div class="mb-4">
+          <a href="../index.html" class="link">Go back</a>
+        </div>
+
+        <ol
+          class="list-group list-group-numbered mx-auto js-contacts-list"
+          style="width: 300px"
+        >
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center"
+          >
+            <span class="fw-bold flex-grow-1 ms-3">Contact 1</span>
+            <span class="badge bg-primary rounded-pill">14</span>
+          </li>
+
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center"
+          >
+            <span class="fw-bold flex-grow-1 ms-3">Contact 2</span>
+            <span class="badge bg-primary rounded-pill">14</span>
+          </li>
+
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center"
+          >
+            <span class="fw-bold flex-grow-1 ms-3">Contact 3</span>
+            <span class="badge bg-primary rounded-pill">14</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+      integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script> -->
+    <script src="../js/search.js" type="module"></script>
+  </body>
+</html>
