@@ -1,0 +1,35 @@
+{
+  "name": "bootcamp18online",
+  "version": "1.0.0",
+  "description": "",
+  "source": "src/index.html",
+  "browserslist": "> 0.5%, last 3 versions, not dead",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "parcel -p 3030 --open",
+    "build": "parcel build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josserden/bootcamp18online.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josserden/bootcamp18online/issues"
+  },
+  "homepage": "https://github.com/josserden/bootcamp18online#readme",
+  "devDependencies": {
+    "parcel": "^2.6.0",
+    "parcel-reporter-clean-dist": "^1.0.4"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.0-beta1",
+    "lazysizes": "^5.3.2",
+    "lodash.throttle": "^4.1.1"
+  }
+}
