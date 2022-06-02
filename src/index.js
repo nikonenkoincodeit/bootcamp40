@@ -32,9 +32,8 @@ form.addEventListener('reset', () => {
 
 function getDataFromLS() {
   let saveData = Storage.load(STORAGE_KEY);
-  if (saveData) {
-    saveData = JSON.parse(saveData);
 
+  if (saveData) {
     Object.entries(saveData).forEach(([name, value]) => {
       form.elements[name].value = value;
     });
