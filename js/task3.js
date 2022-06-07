@@ -8,3 +8,26 @@
  */
 
 const getRandomNumber = () => Math.floor(Math.random() * 4) + 1;
+
+const makePromise = () => {
+  return new Promise((resolve, reject) => {
+    const delay = getRandomNumber();
+
+    setTimeout(() => {
+      if (delay <= 2) {
+        resolve(delay);
+      } else {
+        reject(delay);
+      }
+    }, delay * 1000);
+  });
+};
+
+const handleSuccess = delay => console.warn(`✅ Resolved after ${delay} sec`);
+const handleError = delay => console.error(`❌ Rejected after ${delay} sec`);
+
+makePromise()
+  .then(delay => handleSuccess(delay))
+  .catch(err => handleError(err));
+
+// makePromise().then(handleSuccess).catch(handleError);
