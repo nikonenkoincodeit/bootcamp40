@@ -1,0 +1,67 @@
+1) npm init -y
+2) npm install --save-dev webpack webpack-cli webpack-dev-server
+
+3) "scripts": {
+    "dev": "webpack --mode development"
+  },
+
+4) 
+//webpack.config.js
+const path = require('path')
+
+module.exports = {
+    entry:  path.resolve(__dirname, "./src/index.js"),
+    output: { path: path.resolve(__dirname, "build"), filename: "main.js" }
+};
+
+5) npm install --save-dev html-webpack-plugin
+
+6)  
+const HTMLWebpackPlugin = require('html-webpack-plugin')
+
+plugins: [
+    new HTMLWebpackPlugin({
+      template: path.resolve(__dirname, './src/index.html'),
+      filename: 'index.html',
+    }),
+  ],
+
+"scripts": {
+  "dev": "webpack --mode development",
+  "start": "webpack-dev-server --mode development --open"
+}
+
+Работа с CSS
+
+7) npm install --save-dev css-loader style-loader
+
+ module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+
+Теперь index.js имеет вид:
+
+import './styles.css';
+console.log('Im from source!');
+
+
+Картинки 
+npm i file-loader
+
+module: {
+    rules: [
+      {
+        test: /\.(png|jpg|gif)$/,
+        type: 'asset/resource',
+      },
+    ],
+  },
+
+    <img src="<%=require('./img/person.jpg')%>" alt="err" />
+
+  "build": "webpack --mode production"
