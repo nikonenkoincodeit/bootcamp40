@@ -6,8 +6,16 @@ module.exports = {
   output: { path: path.resolve(__dirname, "build"), filename: "main.js" },
   plugins: [
     new HTMLWebpackPlugin({
-      template: path.resolve(__dirname, "./src/index.html"),
+      template: path.resolve(__dirname, "./src/pages/index.html"),
       filename: "index.html",
+    }),
+    new HTMLWebpackPlugin({
+      template: path.resolve(__dirname, "./src/pages/user.html"),
+      filename: "user.html",
+    }),
+    new HTMLWebpackPlugin({
+      template: path.resolve(__dirname, "./src/pages/album.html"),
+      filename: "album.html",
     }),
   ],
   module: {

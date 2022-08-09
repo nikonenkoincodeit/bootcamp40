@@ -1,4 +1,12 @@
-h1 {
-  color: red;
-  font-size: 52px;
+.navbar {
+  border-bottom: 1px solid #ececec;
+  margin-bottom: 50px;
+}
+
+.albums {
+  gap: 30px;
+}
+
+.card {
+  width: calc(100% / 4 - 30px);
 }
