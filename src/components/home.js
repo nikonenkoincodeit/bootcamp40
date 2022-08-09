@@ -22,4 +22,7 @@ const getUserId = (e) => {
   location.href = "/user.html?userId=" + userId;
 };
 
-tBodyTableUsers.addEventListener("click", getUserId);
+if (tBodyTableUsers) {
+  tBodyTableUsers.addEventListener("click", getUserId);
+}
+

@@ -3,6 +3,7 @@ import "./css/style.css";
 
 import { getUsers } from "./components/home";
 import { getUser } from "./components/user";
+import { getAlbum } from './components/album'
 
 // console.log("getUsers :>> ", getUsers);
 // console.log("getUser :>> ", getUser);
@@ -14,7 +15,7 @@ if (href.includes("index.html") || href === "") {
 } else if (href.includes("user.html")) {
   getUser();
 } else if (href.includes("album.html")) {
-  console.log("/album.html :>> ");
+  getAlbum();
 } else {
   console.log("error :>> ");
 }
