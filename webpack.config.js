@@ -9,10 +9,6 @@ module.exports = {
       template: path.resolve(__dirname, "./src/template/index.html"),
       filename: "index.html",
     }),
-    new HTMLWebpackPlugin({
-      template: path.resolve(__dirname, "./src/template/about.html"),
-      filename: "about.html",
-    }),
   ],
   module: {
     rules: [
@@ -25,5 +21,11 @@ module.exports = {
         type: "asset/resource",
       },
     ],
+  },
+  devServer: {
+    port: 8080,
+    static: {
+      directory: path.join(__dirname, "src"),
+    },
   },
 };
