@@ -1,4 +1,62 @@
-h1 {
-  color: blue;
-  font-size: 50px;
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgba(124, 252, 0, 0.8);
+}
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 50px 0;
+  border-bottom: 2px solid green;
+}
+
+.form {
+  display: flex;
+}
+
+.input {
+  width: 450px;
+  height: 40px;
+}
+
+.button {
+  display: block;
+  background-color: brown;
+  border: 1px solid tomato;
+  color: #fff;
+  padding: 10px 50px;
+  min-width: 150px;
+}
+
+.item {
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  width: 80%;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+.text {
+  border: 1px solid red;
+  flex-grow: 2;
+  line-height: 3;
+  margin: 0;
+  padding: 0 15px;
+  font-size: 20px;
+}
+
+.checked {
+  opacity: 0.5;
+}
+
+.checked .text {
+  text-decoration: line-through;
 }

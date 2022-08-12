@@ -65,3 +65,29 @@ module: {
     <img src="<%=require('./img/person.jpg')%>" alt="err" />
 
   "build": "webpack --mode production"
+
+
+const xhr = new XMLHttpRequest();
+
+xhr.open("POST", "http://localhost:3000/data/");
+xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+xhr.send(obj);
+xhr.responseType = "json";
+xhr.onload = () => {
+  console.log("data :>> ", xhr.response);
+};
+
+xhr.onerror = (error) => {
+  console.log("error :>> ", error);
+};
+
+
+fetch("http://localhost:3000/data/", {
+  method: "POST", 
+  body: obj, 
+  headers: {
+    "Content-Type": "application/json; charset=UTF-8",
+  },
+})
+  .then((data) => data.json())
+  .then(console.log);
