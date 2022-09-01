@@ -7,6 +7,8 @@ console.table(vehicles);
  * Нехай функція getModelsOnSale повертає масив моделей автомобілів, але тільки тих, що зараз на розпродажі (onSale).
  */
 
-const getModelsOnSale = cars => {};
+const getModelsOnSale = cars => {
+  return cars.filter(({ onSale }) => onSale).map(({ model }) => model);
+};
 
-console.table(getModelsOnSale(vehicles));
+console.log(getModelsOnSale(vehicles));

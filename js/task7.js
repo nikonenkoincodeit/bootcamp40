@@ -7,6 +7,8 @@ import { vehicles } from './vehicles.js';
  * Нехай функція sortByAscendingAmount повертає новий масив автомобілів відсортований за збільшенням значення властивості amount.
  */
 
-const sortByAscendingAmount = cars => {};
+const sortByAscendingAmount = cars => {
+  return [...cars].sort((a, b) => b.amount - a.amount);
+};
 
 console.table(sortByAscendingAmount(vehicles));

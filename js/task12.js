@@ -7,6 +7,8 @@ console.table(vehicles);
  * Нехай функція getSortedCarsOnSale повертає масив автомобілів на розпродажі (властивість onSale), відсортованих за зростанням ціни.
  */
 
-const getSortedCarsOnSale = cars => {};
+const getSortedCarsOnSale = cars => {
+  return cars.filter(({ onSale }) => onSale).sort((a, b) => a.price - b.price);
+};
 
 console.table(getSortedCarsOnSale(vehicles));
