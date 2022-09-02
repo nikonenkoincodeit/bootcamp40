@@ -12,18 +12,11 @@ const calculator = {
   a: 0,
   b: 0,
 
-  read(firstValue, secondValue) {
-    this.a = firstValue;
-    this.b = secondValue;
-  },
+  read(firstValue, secondValue) {},
 
-  add() {
-    return this.a + this.b;
-  },
+  add() {},
 
-  mult() {
-    return this.a * this.b;
-  },
+  mult() {},
 };
 
 calculator.read(10, 20);

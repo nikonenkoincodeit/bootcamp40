@@ -3,6 +3,7 @@
 /*
  * Створіть функцію hostGuests яка поверне ім'я будинку та гостей у ньому
  * Викличте її за допомогою call і apply поставивши контекст і гостей як аргумент
+ *  Anna, Jack, Jimmy, John are staying in Palace
  */
 
 const guests = ['Anna', 'Jack', 'Jimmy'];
@@ -14,14 +15,4 @@ const place2 = {
   house: 'Barn',
 };
 
-function hostGuests(...currentGuest) {
-  console.log(`${currentGuest.join(', ')} are staying in ${this.house}`);
-}
-
-hostGuests.call(place1, ...guests, 'John');
-hostGuests.call(place2, ...guests, 'John');
-
-hostGuests.apply(place1, [...guests, 'John']);
-hostGuests.apply(place2, [...guests, 'John']);
-
-// Anna, Jack, Jimmy, John are staying in Palace
+function hostGuests(...currentGuest) {}

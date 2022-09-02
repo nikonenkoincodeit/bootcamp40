@@ -10,28 +10,15 @@
 const phonebook = {
   contacts: [],
 
-  add(object) {
-    const contact = {
-      list: 'default',
-      ...object,
-      id: this.generateId(),
-      createdAt: this.getDate(),
-    };
-
-    return contact;
-  },
+  add(object) {},
 
   generateId() {
     return '_' + Math.random().toString(36).substr(2, 9);
   },
 
-  getDate() {
-    return Date.now();
-  },
+  getDate() {},
 
-  getContacts() {
-    return this.contacts;
-  },
+  getContacts() {},
 };
 
 console.log(
