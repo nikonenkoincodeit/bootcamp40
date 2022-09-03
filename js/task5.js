@@ -15,4 +15,12 @@ const place2 = {
   house: 'Barn',
 };
 
-function hostGuests(...currentGuest) {}
+function hostGuests(...currentGuest) {
+  console.log(`${currentGuest.join(', ')} are staying in ${this.house}`);
+}
+
+hostGuests.call(place1, ...guests);
+hostGuests.apply(place1, guests);
+console.log('============================:>> ');
+hostGuests.call(place2, ...guests);
+hostGuests.apply(place2, guests);

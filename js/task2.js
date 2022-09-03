@@ -10,15 +10,27 @@
 const phonebook = {
   contacts: [],
 
-  add(object) {},
+  add(object) {
+    const contact = {
+      list: 'users',
+      ...object,
+      id: this.generateId(),
+      date: this.getDate(),
+    };
+    this.contacts.push(contact);
+  },
 
   generateId() {
     return '_' + Math.random().toString(36).substr(2, 9);
   },
 
-  getDate() {},
+  getDate() {
+    return Date.now();
+  },
 
-  getContacts() {},
+  getContacts() {
+    return this.contacts;
+  },
 };
 
 console.log(
@@ -35,3 +47,5 @@ console.log(
     email: 'poly@hotmail.com',
   }),
 );
+
+console.log(phonebook.getContacts());

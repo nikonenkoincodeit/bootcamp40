@@ -12,7 +12,20 @@ const chopShop = {
     { name: 'Ruby', price: 800, quantity: 2 },
   ],
 
-  calcTotalPrice(stoneName) {},
+  calcTotalPrice(stoneName) {
+    const result = this.stones.find(({ name }) => name === stoneName);
+
+    if (!result) return 'Not found';
+
+    const { price, quantity } = result;
+    return price * quantity;
+
+    // for (const stone of this.stones) {
+    //   if (stone.name === stoneName) {
+    //     return stone.price * stone.quantity;
+    //   }
+    // }
+  },
 };
 
 console.log(chopShop.calcTotalPrice('Emerald'));
