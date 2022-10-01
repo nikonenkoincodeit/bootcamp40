@@ -60,3 +60,7 @@ ol {
 .checked .text {
   text-decoration: line-through;
 }
+
+.list {
+  padding: 20px;
+}
