@@ -1,71 +1,67 @@
 // Imports
 import { courses } from './courses.js';
 
-// const tags = courses
-//   .flatMap(({ tags }) => tags)
-//   .filter((item, index, array) => array.indexOf(item) === index);
+const filtersRef = document.querySelector('.js-filters-container');
+const coursesRef = document.querySelector('.js-courses-container');
 
-const tags = [...new Set(courses.flatMap(({ tags }) => tags))];
-
-// Variables
-
-const coursesContainerRef = document.querySelector('.js-courses-container');
-const filtersContainerRef = document.querySelector('.js-filters-container');
-
-// Run Functions
-function start() {
-  const markupBtns = createFilterBtns(tags);
-  const markupListCourses = createListCourses(courses);
-  addMarkup(markupBtns, filtersContainerRef);
-  addMarkup(markupListCourses, coursesContainerRef);
-}
-start();
-// Listeners
-
-filtersContainerRef.addEventListener('click', onClickBtnFilter);
-
-// Functions
-
-function onClickBtnFilter(e) {
-  if (e.target.tagName !== 'BUTTON') return; // умова для перевірки чи клікнули в кнопку
-  const { value } = e.target.dataset;
-  const filterData = filterCourses(courses, value);
-  const markupListCourses = createListCourses(filterData);
-  addMarkup(markupListCourses, coursesContainerRef); // рендер відфільтрованих курсів
-  updateClassActive(e.target);
+function filterTags() {
+  const tags = courses.flatMap(item => item.tags);
+  return [...new Set(tags)];
+  // return tags.filter((item, index, array) => {
+  //   return array.indexOf(item) === index;
+  // });
 }
 
-function updateClassActive(elem) {
-  // видалення класу з активної кнопки
-  for (const child of filtersContainerRef.children) {
-    if (child.classList.contains('is-active')) {
-      child.classList.remove('is-active');
-      break;
-    }
-  }
-  elem.classList.add('is-active'); // вішаємо клас на кнопку в яку клікнули
+function filterCourses(courses = [], tag = '') {
+  return courses.filter(({ tags }) => tags.includes(tag));
 }
 
-// знаходимо відфільтровані за тегом курси
-function filterCourses(courses = [], value) {
-  return courses.filter(({ tags }) => tags.includes(value));
-}
-
-function createFilterBtns(tags = []) {
-  return tags
+function createListBtns(data = []) {
+  return data
     .map(
-      tag =>
-        `<button class="button" type="button" data-value="${tag}">${tag}</button>`,
+      tag => `<button class="button " type="button" data-value="${tag}">
+  ${tag}
+</button>`,
     )
     .join('');
 }
 
-function createListCourses(courses = []) {
-  return courses
-    .map(({ name, prices }) => `<li>${name} - ${prices} $</li>`)
+function createListCourses(data = []) {
+  return data
+    .map(({ name, prices }) => {
+      return `<li class="js-item">${name} - ${prices} $</li>`;
+    })
     .join('');
 }
 
-function addMarkup(markup = '', elem) {
+function updateCourses(courses) {
+  const markupCourses = createListCourses(courses);
+  addMarkup(coursesRef, markupCourses);
+}
+
+function init() {
+  const tags = filterTags();
+  const markupBtns = createListBtns(tags);
+  addMarkup(filtersRef, markupBtns);
+  updateCourses(courses);
+}
+init();
+
+function onFilterCourses(e) {
+  const t = e.target;
+  if (t.tagName !== 'BUTTON') return;
+ 
+  const elemActive = this.querySelector('.is-active');
+  if (elemActive) elemActive.classList.remove('is-active');
+  t.classList.add('is-active');
+  
+  const value = t.dataset.value;
+  const filterData = filterCourses(courses, value);
+  updateCourses(filterData);
+}
+
+filtersRef.addEventListener('click', onFilterCourses);
+
+function addMarkup(elem, markup = '') {
   elem.innerHTML = markup;
 }
