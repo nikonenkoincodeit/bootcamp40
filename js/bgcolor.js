@@ -1,24 +1,19 @@
 //_.throttle
 // Variables
-
-const buttonRef = document.querySelector('.js-button');
 const bodyRef = document.body;
-console.log('_.throttle:>> ', _.throttle);
+const btnRef = document.querySelector('.js-button');
+console.log('bodyRef :>> ', bodyRef);
 // Listeners
-buttonRef.addEventListener('click', _.throttle(onClickBtn, 250));
+btnRef.addEventListener('click', _.throttle(onClickBtn, 500));
 // Functions
-let click = 0;
-let flag = true;
-
+console.log('bodyRef.style :>> ', bodyRef.style);
+let counter = 0;
 function onClickBtn() {
-  click += 1;
-  bodyRef.style.background = getRandomHexColor();
-  if (flag) {
-    setTimeout(() => {
-      console.log('click :>> ', click);
-    }, 1000);
-    flag = false;
-  }
+  console.log(Date.now());
+  console.log(counter);
+  counter += 1;
+  const color = getRandomHexColor();
+  bodyRef.style.backgroundColor = color;
 }
 
 function getRandomHexColor() {

@@ -12,6 +12,16 @@
 //«загальмувати», а другим - кількість мілісекунд. Повертає нову функцію для передачі
 //в слухач події.
 
+// let scrollEventCounter = 0;
+
+// document.addEventListener('scroll', onScroll);
+// document.addEventListener('scroll', _.throttle(onScroll, 3000));
+
+// function onScroll() {
+//   scrollEventCounter += 1;
+//   console.log(scrollEventCounter);
+// }
+
 //debounce
 //Прийом debounce гарантує, що функція буде викликана лише у тому разі, якщо між подіями
 //буде пауза N мілісекунд. Наприклад, доки користувач скролить сторінку функція не буде
@@ -20,6 +30,15 @@
 //викликана.
 
 //_.debounce( func, wait, options )
+
+let scrollEventCounter = 0;
+
+document.addEventListener('scroll', _.debounce(onScroll, 300));
+
+function onScroll() {
+  scrollEventCounter += 1;
+  console.log(scrollEventCounter);
+}
 
 //За замовчуванням метод debounce працює у режимі, коли функція викликається
 //через N мілісекунд після паузи між потоками подій trailing edge (в кінці).
