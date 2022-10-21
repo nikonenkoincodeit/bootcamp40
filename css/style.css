@@ -1,0 +1,58 @@
+html,
+body {
+  height: 100%;
+  background-color: rgb(131, 251, 112);
+}
+.header {
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid green;
+}
+
+.list {
+  width: 70%;
+  margin: 0 auto;
+  list-style: none;
+  padding-top: 20px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid green;
+  color: #fff;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input {
+  padding: 10px 15px;
+  width: 300px;
+}
+.btn {
+  padding: 10px 25px;
+  background-color: green;
+}
+.remove-btn {
+  padding: 10px 50px;
+  background: red;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  color: #fff;
+}
+
+.text {
+  width: 100%;
+  padding: 15px 0;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(7, 35, 247);
+}
+.text.checked {
+  text-decoration: line-through;
+}
