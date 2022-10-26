@@ -1,140 +1,121 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="/user.html">user</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/album.html">album</a>
-              </li>
-            </ul>
-            <form class="d-flex">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
-          </div>
-        </div>
-      </nav>
-    </div>
-    <div class="container">
-      <h1>User</h1>
-      <div class="row">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">name</th>
-              <th scope="col">username</th>
-              <th scope="col">email</th>
-              <th scope="col">address</th>
-              <th scope="col">phone</th>
-              <th scope="col">website</th>
-              <th scope="col">company</th>
-            </tr>
-          </thead>
-          <tbody class="js-user-table"></tbody>
-        </table>
-      </div>
-      <div class="row">
-        <h2>Albums</h2>
-        <ul class="list-group list-group-numbered js-album"></ul>
-      </div>
-    </div>
 
-    <div
-      id="prevue--wrapper"
-      style="
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/user.html">user</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/album.html">album</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="container">
+    <h1>User</h1>
+    <div class="row">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">name</th>
+            <th scope="col">username</th>
+            <th scope="col">email</th>
+            <th scope="col">address</th>
+            <th scope="col">phone</th>
+            <th scope="col">website</th>
+            <th scope="col">company</th>
+          </tr>
+        </thead>
+        <tbody class="js-user-table">
+
+
+          <tr data-userid='1111'>
+            <th scope="row">1</th>
+            <td>name</td>
+            <td>username</td>
+            <td>email</td>
+            <td>address.city</td>
+            <td>phone</td>
+            <td>website</td>
+            <td>company.name</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <div class="row">
+      <h2>Albums</h2>
+      <ul class="list-group list-group-numbered js-album">
+        <li class="list-group-item d-flex justify-content-between align-items-start js-list-user-album" data-id="${id}">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">title</div>
+          </div>
+          <span class="badge bg-primary rounded-pill">rat</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="prevue--wrapper" style="
         width: 50vw;
         transition: opacity 0.2s ease 0s, left 0.2s ease 0s, right 0.2s ease 0s;
-      "
-    >
-      <div id="prevue--dragger"></div>
-      <div class="prevue--wrapper-title">
-        <a class="prevue--title" target="_blank"></a>
+      ">
+    <div id="prevue--dragger"></div>
+    <div class="prevue--wrapper-title">
+      <a class="prevue--title" target="_blank"></a>
+    </div>
+    <iframe class="prevue--iframe"></iframe>
+    <div class="prevue--image-wrapper"><img class="prevue--image" /></div>
+    <div class="prevue--actions">
+      <div class="prevue--action-close">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
       </div>
-      <iframe class="prevue--iframe"></iframe>
-      <div class="prevue--image-wrapper"><img class="prevue--image" /></div>
-      <div class="prevue--actions">
-        <div class="prevue--action-close">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            ></path>
-          </svg>
-        </div>
-        <div class="prevue--action-switch-sides">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
-            ></path>
-          </svg>
-        </div>
-        <div class="prevue--action-minimize-maximize">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M9 5l7 7-7 7"
-            ></path>
-          </svg>
-        </div>
-        <div class="prevue--action-settings" title="Prevue Options">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-        </div>
+      <div class="prevue--action-switch-sides">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4">
+          </path>
+        </svg>
+      </div>
+      <div class="prevue--action-minimize-maximize">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </div>
+      <div class="prevue--action-settings" title="Prevue Options">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd"
+            d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+            clip-rule="evenodd"></path>
+        </svg>
       </div>
     </div>
-    <div id="wt-sky-root"></div>
-  </body>
+  </div>
+  <div id="wt-sky-root"></div>
+</body>
+
 </html>
