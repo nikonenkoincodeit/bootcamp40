@@ -10,24 +10,20 @@
 const getRandomNumber = () => Math.floor(Math.random() * 4) + 1;
 
 const makePromise = () => {
-  return new Promise((resolve, reject) => {
-    const delay = getRandomNumber();
-
+  const delay = getRandomNumber();
+  return new Promise((res, rej) => {
     setTimeout(() => {
-      if (delay <= 2) {
-        resolve(delay);
-      } else {
-        reject(delay);
+      if (delay < 3) {
+        res(delay);
       }
+      rej(delay);
     }, delay * 1000);
   });
 };
 
 const handleSuccess = delay => console.warn(`✅ Resolved after ${delay} sec`);
 const handleError = delay => console.error(`❌ Rejected after ${delay} sec`);
-
-makePromise()
-  .then(delay => handleSuccess(delay))
-  .catch(err => handleError(err));
-
-// makePromise().then(handleSuccess).catch(handleError);
+// makePromise()
+//   .then(response => handleSuccess(response))
+//   .catch(error => handleError(error));
+makePromise().then(handleSuccess).catch(handleError);

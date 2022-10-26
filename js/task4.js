@@ -22,21 +22,13 @@ const frameworks = ['React', 'Vue', 'Angular'];
 const getRandomDelay = () => Math.ceil(Math.random() * 2000);
 
 const makePromise = framework => {
-  return new Promise((resolve, reject) => {
-    const delay = getRandomDelay();
-
+  const delay = getRandomDelay();
+  return new Promise((res, rej) => {
     setTimeout(() => {
-      if (delay < 100) {
-        resolve({
-          framework,
-          delay,
-        });
+      if (Math.random() > 1) {
+        res({ framework, delay });
       } else {
-        reject({
-          framework,
-          delay,
-          error: 'Promise error',
-        });
+        rej({ framework, delay, error: 'Promise error' });
       }
     }, delay);
   });
@@ -44,7 +36,7 @@ const makePromise = framework => {
 
 // const promises = frameworks.map(framework => makePromise(framework));
 const promises = frameworks.map(makePromise);
-
+// console.log('promises :>> ', promises);
 /*
  * За допомогою Promise.race дочекайтеся завантаження першого промісу, що спрацював, і виведіть результат його роботи на екран: `✅ ${Framework_name} won with ${delay} ms`
  * або результат помилки: `❌ ${error}! ${name} rejected in ${delay} ms`
@@ -71,8 +63,10 @@ const promises = frameworks.map(makePromise);
 //   console.log(`❌ ${error}! ${framework} rejected in ${delay} ms`);
 
 // Promise.all(promises)
-//   .then(results => results.forEach(handleSuccessAll))
-//   .catch(err => handleError(err));
+//   .then(response => {
+//     response.forEach(item => handleSuccessAll(item));
+//   })
+//   .catch(error => handleError(error));
 
 /*
  * За допомогою Promise.allSettled отримайте масив результатів.
@@ -90,16 +84,13 @@ const promises = frameworks.map(makePromise);
 
 // const handleError = ({ framework, delay, error }) =>
 //   console.log(`❌ ${error}! ${framework} rejected in ${delay} ms`);
-
-// Promise.allSettled(promises).then(results =>
-//   results.forEach(({ status, value, reason }) => {
-//     if (status === 'fulfilled') {
-//       handleSuccessAll(value);
-//     } else {
-//       handleError(reason);
-//     }
-//   })
-// );
+// Promise.allSettled(promises).then(response => {
+//   console.log('response :>> ', response);
+//   response.forEach(obj => {
+//     if (obj.status === 'fulfilled') handleSuccessAll(obj.value);
+//     else handleError(obj.reason);
+//   });
+// });
 
 /*
  * За допомогою Promise.any дочекайтеся завантаження першого успішного промісу та виведіть результат його роботи на екран: `✅ ${Framework_name} won with ${delay} ms` або результат помилки кожного промісу в catch: `❌ ${error}! ${name} rejected in ${delay} ms`
@@ -116,10 +107,7 @@ const promises = frameworks.map(makePromise);
 
 // const handleError = ({ framework, delay, error }) =>
 //   console.log(`❌ ${error}! ${framework} rejected in ${delay} ms`);
-
+// console.log('promises :>> ', promises);
 // Promise.any(promises)
-//   .then(handleSuccess)
-//   .catch(({ message, errors }) => {
-//     console.error(message);
-//     errors.forEach(err => handleError(err));
-//   });
+//   .then(response => handleSuccess(response))
+//   .catch(error => console.log('error :>> ', error));

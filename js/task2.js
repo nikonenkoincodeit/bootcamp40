@@ -11,25 +11,21 @@
 
 // const getData = (onSuccess, onError) => {
 //   const isSuccess = Math.random() < 0.5;
-
-//   setTimeout(() => {
-//     if (isSuccess) {
-//       onSuccess('✅ СУПЕР!');
-//     } else {
-//       onError('❌ ПОМИЛКА!');
-//     }
-//   }, 1000);
+//   if (isSuccess) {
+//     onSuccess('✅ СУПЕР!');
+//   } else {
+//     onError('❌ ПОМИЛКА!');
+//   }
 // };
 
-const getPromiseData = () => {
-  return new Promise((resolve, reject) => {
+const getData = () => {
+  return new Promise((res, rej) => {
     const isSuccess = Math.random() < 0.5;
-
     setTimeout(() => {
       if (isSuccess) {
-        resolve('✅ СУПЕР!');
+        res('✅ СУПЕР!');
       } else {
-        reject('❌ ПОМИЛКА!');
+        rej('❌ ПОМИЛКА!');
       }
     }, 1000);
   });
@@ -39,10 +35,4 @@ const handleSuccess = msg => console.warn(`Ми це зробили, Біллі 
 const handleError = error => console.error(`Кеп, у нас проблема - ${error}`);
 const handleFinished = () => console.log('🚀 Finished!');
 // getData(handleSuccess, handleError);
-
-getPromiseData()
-  .then(msg => handleSuccess(msg))
-  .catch(error => handleError(error))
-  .finally(() => handleFinished());
-
-// getPromiseData().then(handleSuccess).catch(handleError).finally(handleFinished);
+getData().then(handleSuccess).catch(handleError).finally(handleFinished);
