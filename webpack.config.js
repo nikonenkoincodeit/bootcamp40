@@ -4,9 +4,9 @@ const path = require("path");
 module.exports = {
   entry: {
     main: path.resolve(__dirname, "./src/main.js"),
-    home: path.resolve(__dirname, "./src/components/home.js"),
-    album: path.resolve(__dirname, "./src/components/album.js"),
-    user: path.resolve(__dirname, "./src/components/user.js"),
+    home: path.resolve(__dirname, "./src/js/home.js"),
+    album: path.resolve(__dirname, "./src/js/album.js"),
+    user: path.resolve(__dirname, "./src/js/user.js"),
   },
   output: { path: path.resolve(__dirname, "build"), filename: ["name"].js },
   plugins: [
