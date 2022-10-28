@@ -1,4 +1,4 @@
-const BASE_URL = "https://jsonplaceholder.typicode.com/";
+const BASE_URL = "https://dummyjson.com/";
 
 export const getData = (path) => {
   return fetch(BASE_URL + path).then((response) => {

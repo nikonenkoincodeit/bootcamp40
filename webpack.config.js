@@ -4,26 +4,13 @@ const path = require("path");
 module.exports = {
   entry: {
     main: path.resolve(__dirname, "./src/main.js"),
-    home: path.resolve(__dirname, "./src/js/home.js"),
-    album: path.resolve(__dirname, "./src/js/album.js"),
-    user: path.resolve(__dirname, "./src/js/user.js"),
   },
   output: { path: path.resolve(__dirname, "build"), filename: ["name"].js },
   plugins: [
     new HTMLWebpackPlugin({
       template: path.resolve(__dirname, "./src/pages/index.html"),
       filename: "index.html",
-      chunks: ["main", "home"],
-    }),
-    new HTMLWebpackPlugin({
-      template: path.resolve(__dirname, "./src/pages/user.html"),
-      filename: "user.html",
-      chunks: ["main", "user"],
-    }),
-    new HTMLWebpackPlugin({
-      template: path.resolve(__dirname, "./src/pages/album.html"),
-      filename: "album.html",
-      chunks: ["main", "album"],
+      chunks: ["main"],
     }),
   ],
   module: {
