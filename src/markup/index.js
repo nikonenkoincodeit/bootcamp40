@@ -1,14 +1,14 @@
-export const markupUsersList = (data = []) => {
-  console.log("data :>> ", data);
+export const markupListCards = (data = []) => {
   return data
-    .map(({ name, username, email, website, id }, index) => {
-      return `  <tr data-userid='${id}'>
-    <th scope="row">${index + 1}</th>
-    <td>${name}</td>
-    <td>${username}</td>
-    <td>${email}</td>
-    <td>${website}</td>
-  </tr>`;
+    .map(({ thumbnail, title, description, id }) => {
+      return `<div class="col-lg-3"><div class="card" data-id='${id}'>
+      
+      <img src="${thumbnail}" class="card-img-top" alt="${title}">
+      <div class="card-body">
+        <h5 class="card-title">${title}</h5>
+        <p class="card-text">${description}</p>
+      </div>
+    </div></div>`;
     })
     .join("");
 };

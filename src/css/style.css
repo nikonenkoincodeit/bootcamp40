@@ -8,5 +8,23 @@
 }
 
 .card {
-  width: calc(100% / 4 - 30px);
+  margin-bottom: 30px;
+}
+
+.my-btn {
+  display: block;
+  margin: 0 auto;
+  background: rgb(104, 221, 104);
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+}
+
+.my-btn.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.my-btn:hover {
+  background: rgb(13, 210, 13);
 }

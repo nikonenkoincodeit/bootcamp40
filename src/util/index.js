@@ -1,3 +1,3 @@
 export const addMarkup = (element, markup = "") => {
-  element.innerHTML = markup;
+  element.insertAdjacentHTML("beforeend", markup);
 };
