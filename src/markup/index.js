@@ -48,3 +48,19 @@ export const markupUserListAlbums = (data = []) => {
     })
     .join("");
 };
+
+export const markupListAlbums = (data = []) => {
+  return data
+    .map(({ title, id, thumbnailUrl }) => {
+      return `<div class="card" data-set='${id}'>
+      <img class="bd-placeholder-img card-img-top" width="200" height="200"
+        src="${thumbnailUrl}" alt="accusamus beatae ad facilis cum similique qui sunt" />
+      <div class="card-body">
+        <p class="card-text">
+         ${title}
+        </p>
+      </div>
+      </div> `;
+    })
+    .join("");
+};

@@ -16,7 +16,7 @@ const userId = params.split("=")[1] || 1;
       alert(error.messages);
     });
 
-  getData(`albums`)
+  getData(`albums?userId=${userId}`)
     .then((data) => {
       const markup = markupUserListAlbums(data);
       addMarkup(albumRef, markup);
@@ -25,3 +25,11 @@ const userId = params.split("=")[1] || 1;
       alert(error.messages);
     });
 })();
+
+function onClickAlbum(e) {
+  const t = e.target.closest(".js-list-user-album");
+  if (!t) return;
+  location.href = "album.html?albumId=" + t.dataset.id;
+}
+
+albumRef.addEventListener("click", onClickAlbum);

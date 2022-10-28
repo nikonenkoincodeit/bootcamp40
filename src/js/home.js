@@ -13,7 +13,7 @@ import { tbodyRef } from "../refs";
       alert(error.messages);
     });
 })();
-console.log(location);
+
 function onClickUser(e) {
   if (!e.target.closest("tr")) return;
   const id = e.target.closest("tr").dataset.userid;
