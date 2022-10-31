@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development",
-    "start": "webpack-dev-server --mode development --open",
+    "start": "webpack server --mode development --open",
     "server": "json-server -w server/db.json"
   },
   "keywords": [],
