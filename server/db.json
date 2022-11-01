@@ -1,0 +1,14 @@
+{
+  "data": [
+    {
+      "value": "Купити хліба",
+      "checked": true,
+      "id": 1
+    },
+    {
+      "value": "купити води",
+      "checked": false,
+      "id": 3
+    }
+  ]
+}
