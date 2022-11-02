@@ -5,29 +5,40 @@ import { createMarkup } from "./markup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/style.css";
 
-function onSubmit(e) {
+async function onSubmit(e) {
   e.preventDefault();
   const value = e.target.message.value.trim();
   if (!value) return;
 
-  const data = createDataObj(value);
-  sendData(data)
-    .then((response) => {
-      const markup = createMarkup([response]);
-      addMarkup(markup);
-    })
-    .catch(console.log);
+  try {
+    const data = createDataObj(value);
+    const response = await sendData(data);
+    const markup = createMarkup([response]);
+    addMarkup(markup);
+  } catch (error) {
+    console.log(error);
+  }
+  // sendData(data)
+  //   .then((response) => {
+  //     const markup = createMarkup([response]);
+  //     addMarkup(markup);
+  //   })
+  //   .catch(console.log);
   e.target.reset();
 }
 
-(function () {
-  getData()
-    .then((response) => {
-      if (!response.length) return;
-      const markup = createMarkup(response);
-      addMarkup(markup);
-    })
-    .catch(console.log);
+(async function () {
+  const response = await getData();
+  if (!response.length) return;
+  const markup = createMarkup(response);
+  addMarkup(markup);
+  // getData()
+  //   .then((response) => {
+  //     if (!response.length) return;
+  //     const markup = createMarkup(response);
+  //     addMarkup(markup);
+  //   })
+  //   .catch(console.log);
 })();
 
 function createDataObj(value) {
@@ -44,27 +55,42 @@ function getParentId(e) {
   return { id, parentRef };
 }
 
-function onClick(e) {
+async function onClick(e) {
   if (e.target.tagName !== "BUTTON") return;
   const { id, parentRef } = getParentId(e);
-  deleteData(id)
-    .then((response) => {
-      console.log(response);
-      parentRef.remove();
-    })
-    .catch(console.log);
+  try {
+    const response = await deleteData(id);
+    parentRef.remove();
+  } catch (error) {
+    console.log("error :>> ", error);
+  }
+
+  // deleteData(id)
+  //   .then((response) => {
+  //     console.log(response);
+  //     parentRef.remove();
+  //   })
+  //   .catch(console.log);
 }
 
-function onClickText(e) {
+async function onClickText(e) {
   if (e.target.tagName !== "P") return;
   const { id, parentRef } = getParentId(e);
   const flag = parentRef.classList.contains("checked");
-  updateData(id, { checked: !flag })
-    .then(({ checked }) => {
-      const method = checked ? "add" : "remove";
-      parentRef.classList[method]("checked");
-    })
-    .catch(console.log);
+  try {
+    const { checked } = await updateData(id, { checked: !flag });
+    const method = checked ? "add" : "remove";
+    parentRef.classList[method]("checked");
+  } catch (error) {
+    console.log("error :>> ", error);
+  }
+
+  // updateData(id, { checked: !flag })
+  //   .then(({ checked }) => {
+  //     const method = checked ? "add" : "remove";
+  //     parentRef.classList[method]("checked");
+  //   })
+  //   .catch(console.log);
 }
 
 listRef.addEventListener("click", onClick);
