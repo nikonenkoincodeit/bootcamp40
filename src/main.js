@@ -1,6 +1,7 @@
 import { getData, sendData, deleteData, updateData } from "./api";
-import { listRef, formRef } from "./refs";
+import { listRef, formRef, loginBtnRef, signOutBtnRef } from "./refs";
 import { createMarkup } from "./markup";
+import { onloginUser, signOutUser } from "./api/login";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/style.css";
@@ -12,33 +13,28 @@ async function onSubmit(e) {
 
   try {
     const data = createDataObj(value);
-    const response = await sendData(data);
-    const markup = createMarkup([response]);
+    const key = await sendData(data);
+    data.id = key;
+    const markup = createMarkup([data]);
     addMarkup(markup);
   } catch (error) {
     console.log(error);
   }
-  // sendData(data)
-  //   .then((response) => {
-  //     const markup = createMarkup([response]);
-  //     addMarkup(markup);
-  //   })
-  //   .catch(console.log);
+
   e.target.reset();
 }
 
 (async function () {
   const response = await getData();
-  if (!response.length) return;
-  const markup = createMarkup(response);
+  const keys = Object.keys(response);
+  for (const key of keys) {
+    response[key].id = key;
+  }
+  const data = Object.values(response);
+  console.log("data :>> ", data);
+  if (!data.length) return;
+  const markup = createMarkup(data);
   addMarkup(markup);
-  // getData()
-  //   .then((response) => {
-  //     if (!response.length) return;
-  //     const markup = createMarkup(response);
-  //     addMarkup(markup);
-  //   })
-  //   .catch(console.log);
 })();
 
 function createDataObj(value) {
@@ -64,13 +60,6 @@ async function onClick(e) {
   } catch (error) {
     console.log("error :>> ", error);
   }
-
-  // deleteData(id)
-  //   .then((response) => {
-  //     console.log(response);
-  //     parentRef.remove();
-  //   })
-  //   .catch(console.log);
 }
 
 async function onClickText(e) {
@@ -78,21 +67,17 @@ async function onClickText(e) {
   const { id, parentRef } = getParentId(e);
   const flag = parentRef.classList.contains("checked");
   try {
-    const { checked } = await updateData(id, { checked: !flag });
-    const method = checked ? "add" : "remove";
+    updateData(id, { checked: !flag });
+    const method = !flag ? "add" : "remove";
     parentRef.classList[method]("checked");
   } catch (error) {
     console.log("error :>> ", error);
   }
-
-  // updateData(id, { checked: !flag })
-  //   .then(({ checked }) => {
-  //     const method = checked ? "add" : "remove";
-  //     parentRef.classList[method]("checked");
-  //   })
-  //   .catch(console.log);
 }
+console.log(loginBtnRef);
 
+signOutBtnRef.addEventListener("click", signOutUser);
+loginBtnRef.addEventListener("click", onloginUser);
 listRef.addEventListener("click", onClick);
 listRef.addEventListener("click", onClickText);
 formRef.addEventListener("submit", onSubmit);

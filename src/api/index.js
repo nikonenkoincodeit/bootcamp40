@@ -1,88 +1,39 @@
-import axios from "axios";
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, push, onValue, get, set } from "firebase/database";
 
-const BASE_URL = "http://localhost:3000/data";
-axios.defaults.baseURL = BASE_URL;
+import { firebaseConfig } from "../config";
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getDatabase();
 
-export const sendData = async (payload) => {
-  const { data } = await axios.post("/", payload);
-  return data;
+export const getData = (id = "") => {
+  return get(ref(db, "task/" + id))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 };
 
-// export const sendData = (data) => {
-//   return axios.post("/", data).then(({ data }) => data);
-// };
-
-// export const sendData = (data) => {
-//   return fetch(BASE_URL, {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(data),
-//   }).then((response) => {
-//     if (response.ok) {
-//       return response.json();
-//     }
-//     throw new Error(response.statusText);
-//   });
-// };
-
-export const getData = async () => {
-  const { data } = await axios.get();
-  return data;
+export const sendData = (data) => {
+  return push(ref(db, "task/"), data).then((response) => response.key);
 };
 
-// export const getData = () => {
-//   return axios.get().then((response) => {
-//     return response.data;
-//   });
-// };
+onValue(ref(db, "task/"), (snapshot) => {
+  const data = snapshot.val();
+  console.log("onValue :>> ", data);
+});
 
-// export const getData = () => {
-//   return fetch(BASE_URL).then((response) => {
-//     if (response.ok) {
-//       return response.json();
-//     }
-//     throw new Error(response.statusText);
-//   });
-// };
-
-export const deleteData = async (id) => {
-  const { data } = await axios.delete(`/${id}`);
-  return data;
+export const deleteData = (id) => {
+  return set(ref(db, "task/" + id), null);
 };
-
-// export const deleteData = (id) => {
-//   return axios.delete(`/${id}`).then(({ data }) => data);
-// };
-
-// export const deleteData = (id) => {
-//   return fetch(BASE_URL + `/${id}`, {
-//     method: "DELETE",
-//   }).then((response) => {
-//     if (response.ok) {
-//       return response.json();
-//     }
-//     throw new Error(response.statusText);
-//   });
-// };
 
 export const updateData = async (id, payload) => {
-  const { data } = await axios.patch(`/${id}`, payload);
-  return data;
+  const data = await getData(id);
+  set(ref(db, "task/" + id), { ...data, ...payload });
 };
-
-// export const updateData = (id, data) => {
-//   return axios.patch(`/${id}`, data).then(({ data }) => data);
-// };
-
-// export const updateData = (id, data) => {
-//   return fetch(BASE_URL + `/${id}`, {
-//     method: "PATCH",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(data),
-//   }).then((response) => {
-//     if (response.ok) {
-//       return response.json();
-//     }
-//     throw new Error(response.statusText);
-//   });
-// };
