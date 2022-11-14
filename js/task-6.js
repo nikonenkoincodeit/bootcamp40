@@ -19,8 +19,9 @@ if (height.includes(',')) {
   height = height.replace(',', '.');
 }
 
-const bmi = weight / Math.pow(height, 2);
-console.log('weight :>> ', weight);
-console.log('bmi :>> ', bmi.toFixed(1));
+// console.log('weight :>> ', weight);
+// console.log('height :>> ', height);
 
+const bmi = weight / Math.pow(height, 2);
+console.log('bmi :>> ', bmi.toFixed(1));
 //28.8

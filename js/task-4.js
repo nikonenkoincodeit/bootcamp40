@@ -5,9 +5,6 @@
 
 const value = 27.5;
 
-//console.log(Math.floor(value));
-//console.log(Math.ceil(value));
-//console.log(Math.round(value));
-let a = Math.floor(Math.random() * 10) + 10;
-
-console.log(Math.min(2, 52, 41));
+// console.log(Math.floor(value));
+// console.log(Math.ceil(value));
+// console.log(Math.round(value));

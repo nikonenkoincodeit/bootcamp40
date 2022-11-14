@@ -8,5 +8,6 @@ const companyName = 'Cyberdyne Systems';
 const repairBots = 150;
 const defenseBots = 50;
 
-const message = `${companyName} has ${repairBots + defenseBots} bots in stock`;
-console.log('message :>> ', message);
+const result = `${companyName} has ${repairBots - defenseBots} bots in stock`;
+
+alert(result);

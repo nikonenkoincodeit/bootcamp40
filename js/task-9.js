@@ -5,7 +5,4 @@
 
 const incomingValue = false;
 const defaultValue = 10;
-
-// let value;
-
-// console.log(value);
+console.log('11111111111 :>> ', 11111111111);
