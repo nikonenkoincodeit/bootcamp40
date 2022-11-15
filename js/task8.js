@@ -3,21 +3,19 @@
  * Виконай рефакторинг коду задачі номер 7, використовуючи switch.
  */
 
-const daysUntilDeadline = 3;
+const daysUntilDeadline = 2;
 let message;
 
 switch (daysUntilDeadline) {
   case 0:
-    message = 'Сьогодні';
+    console.log('Сьогодні');
     break;
   case 1:
-    message = 'Сьогодні';
+    console.log('Завтра');
     break;
   case 2:
-    message = 'Післязавтра';
+    console.log('Післязавтра');
     break;
   default:
-    message = 'Дата в майбутньому';
+    console.log('Дата в майбутньому');
 }
-
-console.log('message :>> ', message);

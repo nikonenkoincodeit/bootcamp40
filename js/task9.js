@@ -7,8 +7,7 @@ const max = 108;
 const min = 28;
 
 for (let i = min; i < max; i++) {
-  //if (i % 5 === 0) {
-  if (!(i % 5)) {
+  if (i % 5 === 0) {
     console.log('i :>> ', i);
   }
 }

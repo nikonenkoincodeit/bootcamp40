@@ -11,12 +11,13 @@
 ######
 #######
 */
+
 let result = '';
-for (let i = 0; i < 8; i++) {
-  for (let j = 0; j < i; j += 1) {
+for (let i = 0; i < 7; i++) {
+  for (let j = 0; j < i; j++) {
     result += '#';
   }
   result += '\n';
 }
-
+result += '||';
 console.log(result);

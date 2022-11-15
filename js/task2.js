@@ -4,14 +4,11 @@
  */
 
 const userInput = Number(prompt('Введіть число', 0));
-let message;
 
-if (userInput < 0) {
-  message = "Це від'ємне число";
-} else if (userInput === 0) {
-  message = 'Це нуль';
+if (userInput === 0) {
+  console.log('Це нуль');
+} else if (userInput > 0) {
+  console.log('Це позитивне число');
 } else {
-  message = 'Це позитивне число';
+  console.log("Це від'ємне число");
 }
-
-alert(message);

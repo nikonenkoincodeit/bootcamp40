@@ -8,17 +8,15 @@
 * Якщо до дедлайну 3+ днів - виведи рядок "Дата в майбутньому"
  */
 
-const daysUntilDeadline = 3;
+const daysUntilDeadline = 2;
 let message;
 
 if (daysUntilDeadline === 0) {
-  message = 'Сьогодні';
+  console.log('Сьогодні');
 } else if (daysUntilDeadline === 1) {
-  message = 'Завтра';
+  console.log('Завтра');
 } else if (daysUntilDeadline === 2) {
-  message = 'Післязавтра';
-} else if (daysUntilDeadline >= 3) {
-  message = 'Дата в майбутньому';
+  console.log('Післязавтра');
+} else {
+  console.log('Дата в майбутньому');
 }
-
-console.log('message :>> ', message);
