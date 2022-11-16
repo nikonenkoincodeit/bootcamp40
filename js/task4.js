@@ -5,19 +5,15 @@
 
 const names = 'Jacob,William,Solomon,Artemis';
 const phones = '89001234567,89001112233,890055566377,890055566300';
+
 const namesArr = names.split(',');
 const phonesArr = phones.split(',');
-// console.log('namesArr :>> ', namesArr);
-// console.log('namesArr :>> ', phonesArr);
 
-const length = namesArr.length;
-
-//поганий підхід!
-// console.log('namesArr[0] :>> ', namesArr[0]);
-// console.log('namesArr[1] :>> ', namesArr[1]);
-// console.log('namesArr[2] :>> ', namesArr[2]);
-// console.log('namesArr[3] :>> ', namesArr[3]);
-
-for (let index = 0; index < length; index += 1) {
-  console.log(`${namesArr[index]} - ${phonesArr[index]}`);
+for (let i = 0; i < namesArr.length; i++) {
+  const name = namesArr[i];
+  const phone = phonesArr[i];
+  console.log(`${name} - ${phone}`);
 }
+
+//Jacob - 89001234567
+//...

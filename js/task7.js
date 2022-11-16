@@ -16,16 +16,14 @@
  */
 
 let poem = ['Мороз', 'и', 'солнце', 'день', 'чудесный'];
+let index = null;
 
-// poem.length = 0;
-// poem = [];
-console.log('poem :>> ', poem);
-
-alert(poem.join(' '));
-const select = prompt('Яке слово треба прибрати?');
-const index = poem.indexOf(select);
-if (index > -1) {
-  const word = prompt('Введіть слово замінник');
-  poem.splice(index, 1, word);
+do {
   alert(poem.join(' '));
-}
+  index = prompt('Вкажіть індекс слова?');
+  console.log('index :>> ', index);
+  if (index) {
+    const word = prompt('Вкажіть слово?');
+    poem.splice(Number(index), 1, word);
+  }
+} while (index !== null);

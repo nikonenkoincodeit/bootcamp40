@@ -9,12 +9,14 @@
  */
 
 const genres = ['Jazz', 'Blues'];
-// const arr = new Array(12, 13, 14);
-// console.log('genres.push(Рок-н-рол); :>> ', genres.push('Рок-н-рол'));
+genres.push('Рок-н-рол');
 
-// console.log('genres :>> ', genres.shift());
-// console.log('genres :>> ', genres);
-// console.log('genres :>> ', genres[genres.length - 1]);
-// genres.unshift('Country', 'Raggy');
-genres.splice(0, 0, 'Country', 'Raggy');
+console.log('first element :>> ', genres[0]);
+console.log('last element :>> ', genres[genres.length - 1]);
+console.log('last element :>> ', genres.at(-1));
+
+const firstElem = genres.shift();
+console.log('firstElem :>> ', firstElem);
+genres.unshift('Country', 'Raggy');
+
 console.log('genres :>> ', genres);

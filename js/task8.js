@@ -4,13 +4,3 @@
  */
 
 const numbers = [2, 17, 94, 1, 23, 37, 0, -5]; // -5
-
-let min = numbers[0];
-
-for (const number of numbers) {
-  if (number < min) {
-    min = number;
-  }
-}
-
-console.log('min :>> ', min);

@@ -6,27 +6,13 @@
 const string =
   'Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia voluptas cupiditate excepturi,';
 
-const arr = string.split(' ');
-//1
-// const newArr = arr.slice(1, arr.length - 1);
+const words = string.split(' ');
+const copyWords = words.slice(1, words.length - 1);
 
-// for (let item of newArr) {
-//   console.log('item :>> ', item);
+// for (const word of copyWords) {
+//   console.log('word :>> ', word);
 // }
 
-// console.log('newArr :>> ', newArr);
+const newString = copyWords.join(' ');
 
-//2
-// arr.pop();
-// arr.shift();
-// // console.log('arr :>> ', arr);
-// for (let item of arr) {
-//   console.log('item :>> ', item);
-// }
-
-//3
-
-const length = arr.length - 1;
-for (let index = 1; index < length; index++) {
-  console.log('arr[index] :>> ', arr[index]);
-}
+console.log('newString :>> ', newString);

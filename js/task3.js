@@ -5,26 +5,11 @@
 
 const fruits = ['🍎', '🍇', '🍑', '🍌', '🍋', '🆘', 'Ⓜ️'];
 
-const length = fruits.length;
+for (let i = 0; i < fruits.length; i++) {
+  const element = fruits[i];
+  console.log(`${i + 1}) ${element}`);
+}
 
-// for (let index = 0; index < length; index++) {
-//   console.log(`${index + 1} - ${fruits[index]}`);
-// }
-
-let index = 0;
-// while (index < length) {
-//   console.log(`${index + 1} - ${fruits[index]}`);
-//   index += 1;
-// }
-
-// do {
-//   console.log(`${index + 1} - ${fruits[index]}`);
-//   index += 1;
-// } while (index < length);
-
-// for (const fruit of fruits) {
-//   console.log(`${index + 1} - ${fruit}`);
-//   index += 1;
-// }
-
-// if () {} else {}
+//1) '🍎'
+//2) '🍇'
+//...
