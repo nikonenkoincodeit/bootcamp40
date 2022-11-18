@@ -16,15 +16,6 @@ const arr = [
   'php',
 ];
 
-function removeDuplicates(arr) {
-  const newArr = [];
-  const length = arr.length;
-  for (let i = 0; i < length; i += 1) {
-    if (i === arr.indexOf(arr[i])) {
-      newArr.push(arr[i]);
-    }
-  }
-  return newArr;
-}
+function removeDuplicates(arr) {}
 
-console.log(removeDuplicates(arr))
+console.log(removeDuplicates(arr));
