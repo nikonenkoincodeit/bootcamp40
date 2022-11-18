@@ -5,4 +5,7 @@
 
 const incomingValue = false;
 const defaultValue = 10;
-console.log('11111111111 :>> ', 11111111111);
+
+const result = incomingValue ?? defaultValue;
+
+console.log('result :>> ', result);
