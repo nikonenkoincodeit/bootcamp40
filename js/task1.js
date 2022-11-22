@@ -8,8 +8,17 @@
 const num = 55639217;
 
 function colonOdd(num = 0) {
-
+  //   const numStr = String(num);
+  const numStr = num.toString();
+  const result = [numStr[0]];
+  for (let i = 1; i < numStr.length; i++) {
+    if (numStr[i - 1] % 2 !== 0 && numStr[i] % 2 !== 0) {
+      result.push(':', numStr[i]);
+    } else {
+      result.push(numStr[i]);
+    }
+  }
+  return result.join('');
 }
 
 console.log('colonOdd(num = 0) :>> ', colonOdd(num));
-

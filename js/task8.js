@@ -16,6 +16,8 @@ const arr = [
   'php',
 ];
 
-function removeDuplicates(arr) {}
+function removeDuplicates(arr) {
+  return [...new Set(arr)];
+}
 
 console.log(removeDuplicates(arr));
