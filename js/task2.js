@@ -9,30 +9,25 @@ const salaries = {
   Pete: 130,
 };
 
-const a = {};
-
-// let sum = 0;
-// const values = Object.values(salaries);
-// for (const value of values) {
-//   sum += value;
-// }
-// console.log('sum :>> ', sum);
-
-// let sum2 = 0;
-// const values2 = Object.values(a);
-// for (const value of values2) {
-//   sum2 += value;
-// }
-// console.log('sum :>> ', sum2);
-
-console.log('getSum({}) :>> ', getSum({}));
-console.log('getSum(salaries) :>> ', getSum(salaries));
-
-function getSum(obj) {
-  let sum = 0;
-  const values = Object.values(obj);
+function sum(salaries) {
+  let total = 0;
+  const values = Object.values(salaries);
   for (const value of values) {
-    sum += value;
+    total += value;
   }
-  return sum;
+
+  return total;
 }
+
+// function sum(salaries) {
+//   let total = 0;
+//   for (const key in salaries) {
+//     if (salaries.hasOwnProperty(key)) {
+//       total += salaries[key];
+//     }
+//   }
+//   return total;
+// }
+
+console.log(sum({}));
+console.log(sum(salaries));

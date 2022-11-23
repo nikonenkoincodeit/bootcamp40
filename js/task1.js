@@ -15,24 +15,18 @@ const user = {
   premium: true,
 };
 //додає поле mood зі значенням 'happy'
-// user.mood = 'happy';
-user['mood'] = 'happy';
-
-// console.log('user.mood :>> ', user.mood);
+user.mood = 'happy';
+// console.log('user :>> ', user);
 //замінює значення hobby на 'skydiving'
-user.hobby = 'skydiving';
-
+user['hobby'] = 'skydiving';
 // console.log('user :>> ', user);
 
 //замінює значення premium на false
 user.premium = false;
-//виводить вміст об'єкта user у форматі ключ: значення використовуючи Object.keys() і for...of
-
 // console.log('user :>> ', user);
-
+//виводить вміст об'єкта user у форматі ключ: значення використовуючи Object.keys() і for...of
 const keys = Object.keys(user);
-
-console.log('keys :>> ', keys);
+// console.log('keys :>> ', keys);
 
 for (const key of keys) {
   console.log(key + ':' + user[key]);

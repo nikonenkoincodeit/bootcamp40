@@ -11,20 +11,12 @@ const stones = [
 ];
 
 function calcTotalPrice(array, stoneName) {
-  //невірний варіант!!!!
-  // for (const key in array) {
-  //   if (array.hasOwnProperty(key)) {
-  //     console.log('key :>> ', key);
-  //   }
-  // }
-  for (const stone of array) {
+  for (const stone of stones) {
     if (stone.name === stoneName) {
       return stone.price * stone.quantity;
     }
-    // console.log('stone :>> ', stone);
   }
-
-  return 'Not found!';
+  return 'Not found';
 }
 
 console.log(calcTotalPrice(stones, 'Ізумруд'));

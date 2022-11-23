@@ -25,7 +25,8 @@ const account = {
    * Приймає суму та тип транзакції.
    */
   createTransaction(amount, type) {
-    return { id: this.transactions.length + 1, amount, type };
+    // return { amount, type, id: Date.now() };
+    return { amount, type, id: this.transactions.length + 1 };
   },
   /*
    * Метод, який відповідає за додавання суми до балансу.
@@ -34,8 +35,8 @@ const account = {
    * після чого додає його в історію транзакцій
    */
   deposit(amount) {
-    const transaction = this.createTransaction(amount, TRANSACTIONS.DEPOSIT);
     this.balance += amount;
+    const transaction = this.createTransaction(amount, TRANSACTIONS.DEPOSIT);
     this.transactions.push(transaction);
   },
   /*
@@ -49,7 +50,8 @@ const account = {
    */
   withdraw(amount) {
     if (amount > this.balance) {
-      return 'Недостатньо коштів.';
+      console.log('недостатньо коштів');
+      return;
     }
     this.balance -= amount;
     const transaction = this.createTransaction(amount, TRANSACTIONS.WITHDRAW);
@@ -79,7 +81,7 @@ const account = {
   getTransactionTotal(type) {
     let total = 0;
     for (const transaction of this.transactions) {
-      if (type === transaction.type) {
+      if (transaction.type === type) {
         total += transaction.amount;
       }
     }
