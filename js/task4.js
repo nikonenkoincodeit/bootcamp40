@@ -5,12 +5,11 @@
 
 function getStockReport({ companyName, stock }) {
   const values = Object.values(stock);
-  //console.log('values :>> ', values);
   let total = 0;
   for (const value of values) {
     total += value;
   }
-  return `${companyName} has ${total} bots in stock`;
+  return `${companyName} has ${total} items in stock`;
 }
 
 console.log(

@@ -6,24 +6,16 @@
 function getBotReport({ companyName, stock: { defense, repair } }) {
   return `${companyName} has ${repair + defense} bots in stock`;
 }
+
+// Було
+// console.log(getBotReport('Cyberdyne Systems', 150, 50));
+
 //Очікується
 console.log(
   getBotReport({
     companyName: 'Cyberdyne Systems',
     stock: {
       repair: 150,
-      defense: 50,
-    },
-  }),
-);
-// Було
-// console.log(getBotReport('Cyberdyne Systems', 150, 50));
-
-console.log(
-  getBotReport({
-    companyName: 'ATB',
-    stock: {
-      repair: 50,
       defense: 50,
     },
   }),

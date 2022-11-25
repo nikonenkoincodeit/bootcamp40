@@ -3,12 +3,20 @@
  * Перепиши функцію так, щоб вона приймала один об'єкт параметрів замість набору незалежних аргументів.
  */
 
-function calcBMI({ height, weight }) {
-  const numericWeight = Number(weight.replace(',', '.'));
-  const numericHeight = Number(height.replace(',', '.'));
-  const bmi = Number((numericWeight / numericHeight ** 2).toFixed(2));
+let weight = '88,3';
+let height = '1.75';
 
-  return bmi;
+function calcBMI({ weight, height }) {
+  if (weight.includes(',')) {
+    weight = weight.replace(',', '.');
+  }
+
+  if (height.includes(',')) {
+    height = height.replace(',', '.');
+  }
+
+  const bmi = weight / Math.pow(height, 2);
+  return bmi.toFixed(1);
 }
 
 // Було

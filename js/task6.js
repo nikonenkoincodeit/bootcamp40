@@ -3,18 +3,18 @@
 /*
  * Напиши функцію transformUsername(user) так, щоб вона повертала новий об'єкт із властивістю fullName замість firstName і lastName. */
 
-function transformUsername({ firstName, lastName, ...otherProps }) {
-  return { fullName: firstName + ' ' + lastName, ...otherProps };
+function transformUsername({ firstName, lastName, ...args }) {
+  return { ...args, fullName: firstName + ' ' + lastName };
 }
 
 console.log(
   transformUsername({
-    id: 1,
     firstName: 'Jacob',
     lastName: 'Mercer',
     email: 'j.mercer@mail.com',
     friendCount: 40,
     hobby: 'fishing',
+    id: 1,
   }),
 );
 

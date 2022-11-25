@@ -3,13 +3,10 @@
 /*
  * Доповни функцію createContact(partialContact) так, щоб вона повертала новий об'єкт контакту з доданими властивостями id і createdAt, а також list зі значенням "default", якщо у partialContact немає такої властивості. */
 
-// function createContact({ name, email, list = 'default' }) {
-//   return { name, email, list, id: generateId(), createdAt: 225555 };
-// }
-
 function createContact(partialContact) {
+  // const contact = new Object({})
   const list = 'default';
-  return { list, ...partialContact, id: generateId(), createdAt: 225555 };
+  return { list, ...partialContact, id: generateId(), createdAt: true };
 }
 
 console.log(
