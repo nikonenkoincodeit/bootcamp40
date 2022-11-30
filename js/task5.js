@@ -8,31 +8,31 @@ const account = {
   name: 'John',
   balance: 2000,
   // Метод withdraw викликає onError з текстом якщо amount більше TRANSACTION_LIMIT або this.balance, і onSuccess в іншому випадку.
-  withdraw: ({ amount, onSuccess, onError }) => {
+  withdraw(amount, onSuccess, onError) {
     if (amount > TRANSACTION_LIMIT || amount > this.balance) {
       onError('Сума на рахунку не дозволяє виконати транзакцію');
-    } else {
-      onSuccess('Операція виконана успішно');
+      return;
     }
+
+    onSuccess('Операція виконана успішно');
   },
 
   // Метод deposit викликає onError якщо amount більше TRANSACTION_LIMIT або менше або дорівнює нулю, і onSuccess в іншому випадку.
-  deposit: (amount, onSuccess, onError) => {
+  deposit(amount, onSuccess, onError) {
     if (amount > TRANSACTION_LIMIT || amount <= 0) {
-      onError('Не можливо виконати транзакцію');
-    } else {
-      onSuccess('Операція виконана успішно');
+      return onError('Не можливо виконати транзакцію');
     }
+    onSuccess('Операція виконана успішно');
   },
 };
 
-function handleSuccess(message) {
+const handleSuccess = message => {
   console.warn(`✅ Success! ${message}`);
-}
+};
 
-function handleError(message) {
+const handleError = message => {
   console.error(`❌ Error! ${message}`);
-}
+};
 
 account.withdraw(2000, handleSuccess, handleError);
 account.withdraw(600, handleSuccess, handleError);

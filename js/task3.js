@@ -5,7 +5,7 @@
 
 function each(array = [], callback) {
   const result = [];
-  array.forEach(function (item) {
+  array.forEach(item => {
     result.push(callback(item));
   });
 

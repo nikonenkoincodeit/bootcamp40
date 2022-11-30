@@ -7,11 +7,9 @@
 * logTotalPrice(product) - колбек, що приймає об'єкт продукту і логує загальну вартість товару в консоль
  */
 
-//function createProduct(object, callback) {
-function createProduct({ name, price, quantity }, callback) {
-  const obj = { name, price, quantity, id: Date.now() };
-  //const obj = { ...object, id: Date.now() };
-  callback(obj);
+function createProduct(product, callback) {
+  const newProduct = { ...product, id: Date.now() };
+  callback(newProduct);
 }
 
 function logProduct(product) {

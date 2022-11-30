@@ -1,128 +1,204 @@
-//callback
+//Колбек-функції
+//Функції не відрізняються від чисел, рядків або масивів - це просто спеціальний тип даних
+//(об'єкт вищого порядку), значення, яке можна зберігати у змінній або передавати у якості
+//аргументу в іншу функцію.
 
-// function f1(callback) {
-//   setTimeout(function () {
-//     console.log('1 :>> ', 1);
-//     callback();
-//   }, 500);
+// function foo() {
+//   console.log('Hello world :>> ');
 // }
 
-// function f2() {
-//   console.log('2 :>> ', 2);
+// foo();
+
+// console.log(foo);
+// Функція зворотного виклику (callback, колбек) - це функція, яка передається іншій функції
+// як аргумент, а та, в свою чергу, викликає передану функцію.
+
+// function getName(name, callback) {
+//   callback(name);
 // }
 
-// f1(f2);
-//f2();
+// function syHi(name) {
+//   console.log(`Hello, ${name}`);
+// }
 
-// Функція зворотного виклику (callback, колбек) - це функція, яка передається іншій функції як аргумент, а та, в свою чергу, викликає передану функцію.
+// getName('Poly', syHi);
 
-// Функція вищого порядку (higher order function) - функція, яка приймає у якості параметрів інші функції або повертає функцію у якості результату.
+//Функція вищого порядку (higher order function) - функція, яка приймає у якості параметрів
+//інші функції або повертає функцію у якості результату.
+
+//1) функція яка приймає у якості параметрів інші функцію
+// function getName(name, callback) {
+//   callback(name);
+// }
+
+// function syHi(name) {
+//   console.log(`Hello, ${name}`);
+// }
+
+// getName('Poly', syHi);
+
+//2) коли повертає іншу функцію
+
+// function getCounter() {
+//   let counter = 0;
+//   return function setCounter() {
+//     console.log('counter :>> ', counter);
+//     counter += 1;
+//   };
+// }
+
+// const counter = getCounter();
+// counter();
+// counter();
+// counter();
+// counter();
+// counter();
 
 //Інлайн колбеки
 
-// function f1(payload, callback) {
-//   callback(payload);
+// function getName(name, callback) {
+//   callback(name);
 // }
 
-// f1('Hello world!', function (payload) {
-//   console.log('payload :>> ', payload);
+// getName('Poly', function (name) {
+//   console.log(`Hello, ${name}`);
 // });
 
 //Декілька колбеків
 
-// function f1(callback1, callback2) {
-//   if (false) callback1();
-//   else callback2();
+// function foo(onSuccess, onError) {
+//   const flag = Math.random() > 0.2;
+
+//   if (flag) onSuccess();
+//   else onError();
 // }
 
-// function f2() {
-//   console.log('f2 :>> ');
+// function error() {
+//   console.log('error :>> ');
 // }
 
-// function f3() {
-//   console.log('f3 :>> ');
+// function success() {
+//   console.log('success :>> ');
 // }
 
-// f1(f2, f3);
+// foo(success, error);
+
+//Абстрагування повторення
+//Абстракція - приховування деталей реалізації. Дозволяє думати про задачі на вищому
+//(абстрактному) рівні. Функції - це хороший спосіб побудови абстракцій.
+
+// const arr = [25, 65, 89];
+// const btn = $('.js-btn');
+// console.log('btn :>> ', btn);
+
+// $.each(arr, function (item) {
+//   console.log('item :>> ', item);
+// });
 
 //Метод forEach
 
-const numbers = [1, 5, 6, 7, 85, 92];
+// массив.forEach(function callback(element, index, array) {
+//     // Тіло колбек-функції
+//   });
 
-let total = 0;
+//  - Поелементо перебирає масив.
+//  - Викликає колбек-функцію для кожного елемента масиву.
+//  - Нічого не повертає.
 
-// numbers.forEach(function (item, index, arr) {
-//   console.log('item :>> ', item);
+//const numbers = [56, 78, 25, 95, 41, 5, 45];
+
+// numbers.forEach(function (num, index, arr) {
+//   console.log('num :>> ', num);
 //   console.log('index :>> ', index);
-//   console.log('arr :>> ', arr);
-//   console.log('=====================================:>> ');
+//   console.log(' arr :>> ', arr);
 // });
 
-function sum(item) {
-  total += item;
-}
-
-numbers.forEach(sum);
-
-console.log('total :>> ', total);
-
-// numbers.forEach(function (item) {
-//   total += item;
-// });
-
-// console.log('total :>> ', total);
+//задати контекст виклику
+// numbers.forEach(
+//   function (num, index, arr) {
+//     console.log('this :>> ', this);
+//     console.log('num :>> ', num);
+//   },
+//   { name: 'Poly' },
+// );
 
 //Стрілочні функції
+//Стрілочні функції мають скорочений, лаконічніший синтаксис, що зменшує обсяг коду,
+//особливо коли функція маленька або якщо вона використовується як колбек.
 
-// function f1() {
+// function foo () {}
+// const foo = function () {};
 
-// }
+// const foo = () => {}
 
-// const f1 = function () {};
-
-// const f1 = (a, b) => a + b;
-// const f1 = (a, b) => {
-//   return a + b;
+//Усі стрілки створюються як функціональний вираз, і якщо функція - не анонімна, її
+//необхідно присвоювати змінній.
+//Явне повернення
+// const syHi = () => {
+//   return 'Hello world!';
 // };
-
-// const f1 = name => console.log(` Привіт, ${name}`);
-// const f2 = () => console.log(` Привіт, Poly`);
-// // console.log('f1(52, 14) :>> ', f1(52, 14));
-// f1('Poly');
 //Неявне повернення
-// const f1 = (a, b) => a + b;
+// const syHi = () => 'Hello world!';
+// console.log(syHi());
+
+//передача параметрів в стрілочну функцію
+//буз параметрів
+//const syHi = () => 'Hello world!';
+//з одним параметром
+// const syHi = name => 'Hello, ' + name;
+//більше одного параметра
+// const syHi = (hi, name) => hi + name;
+// console.log(syHi('Hello ', 'Poly'));
+
 //Псевдомасив arguments
 
-// const f1 = (a, b, c, ...args) => {
-//   // console.log('arguments :>> ', arguments);
+// const foo = (...args) => {
 //   console.log('args :>> ', args);
 // };
-// f1(25, 24, 26, 25, 85, 45);
+
+// foo(12, 25, 56, 48);
+// foo(12, 25);
+
 //Стрілочні функції як колбеки
 
-// numbers.forEach(item => (total += item));
+// const numbers = [56, 78, 25, 95, 41, 5, 45];
 
-// numbers.forEach(item => {
-//   total += item;
-// });
+// numbers.forEach(num => console.log('num :>> ', num));
 
-// console.log('total :>> ', total);
+//Різновиди коду
+//Імперативне програмування
+//Імперати́вне програмува́ння — парадигма програмування(стиль написання вихідного коду комп'ютерної програми),
+//згідно з якою описується процес отримання результатів як послідовність інструкцій зміни стану програми.
+
+//Імперативна програма схожа на накази (англ. imperative — наказ). Подібно до того, як за допомогою наказового
+//способу в мовознавстві перелічується послідовність дій, що необхідно виконати, імперативні програми є
+//послідовністю операцій комп'ютера для виконання. Поширений синонім імперативному програмуванню є процедурне
+//програмування.
+
+// function createElement(text) {
+//   const element = document.createElement('div');
+//   element.textContent = text;
+//   element.classList.add('my-class');
+//   element.setAttribute('data-name', 'div');
+//   return element;
+// }
+
+// const divElem = createElement('div element');
+// console.log('divElem :>> ', divElem);
+
+//Декларативне програмування
+//Декларативне програмування — парадигма програмування, відповідно до якої, програма описує, який результат
+//необхідно отримати, замість описання послідовності отримання цього результату.
+
+// function createElement(text) {
+//   return `<div class="my-class" data-name="div">${text}</div>`;
+// }
+
+// const divElem = createElement('div element');
+// console.log('divElem :>> ', divElem);
+
 //Імперативний vs декларативний
-
-//Імперативний
-// const filterArr = (arr = []) => {
-//   const result = [];
-//   const length = arr.length;
-//   for (let i = 0; i < length; i += 1) {
-//     if (arr[i] > 50) {
-//       result.push(arr[i]);
-//     }
-//   }
-
-//   return result;
-// };
-
-//декларативний
-// const filterArr = (arr = []) => arr.filter(item => item > 50);
-
-// console.log(filterArr([25, 58, 47, 100, 85]));
+// Стисло кажучи, для отримання результатів імперативні програми явно конкретизують алгоритм,
+// а декларативні — явно конкретизують мету і залишають реалізацію алгоритму на допоміжному програмному
+// забезпеченню (наприклад, інструкція вибірки SQL конкретизує властивості даних, які слід отримати від бази
+// даних, але не процес отримання цих даних).
