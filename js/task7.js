@@ -8,7 +8,7 @@ import { vehicles } from './vehicles.js';
  */
 
 const sortByAscendingAmount = cars => {
-  return [...cars].sort((a, b) => b.amount - a.amount);
+  return [...cars].sort((a, b) => a.amount - b.amount);
 };
 
 console.table(sortByAscendingAmount(vehicles));

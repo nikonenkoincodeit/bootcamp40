@@ -7,9 +7,8 @@ import { vehicles } from './vehicles.js';
  */
 
 const getTotalAmount = cars => {
-  return cars.reduce((acc, item) => {
-    // acc += item.amount;
-    return (acc += item.amount);
+  return cars.reduce((acc, { amount }) => {
+    return acc + amount;
   }, 0);
 };
 

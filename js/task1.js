@@ -6,16 +6,10 @@ import { vehicles } from './vehicles.js';
  * Нехай функція getModels повертає масив моделей (поле model) всіх автомобілів.
  */
 
-// const getModels = cars => {
-//   return cars.map(item => item.model);
+// const getModels = vehicles => {
+//   return vehicles.map(({ model }) => model);
 // };
 
-// const getModels = cars => cars.map(item => item.model);
+const getModels = vehicles => vehicles.map(({ model }) => model);
 
-// const getModels = cars => cars.map(({ model }) => model);
-
-function getModels(cars) {
-  return cars.map(({ model }) => model);
-}
-
-console.log('getModels(vehicles) :>> ', getModels(vehicles));
+console.log(getModels(vehicles));

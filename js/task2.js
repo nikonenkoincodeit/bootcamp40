@@ -1,18 +1,13 @@
 //todo Метод map
 
 import { vehicles } from './vehicles.js';
-console.table(vehicles);
+// console.table(vehicles);
 /*
  * Нехай функція makeCarsWithDiscount повертає новий масив об'єктів із змінним значенням властивості price залежно від переданої знижки.
  */
 
 const makeCarsWithDiscount = (cars, discount) => {
-  return cars.map(item => {
-    return {
-      ...item,
-      price: item.price - item.price * discount,
-    };
-  });
+  return cars.map(car => (car.price -= car.price * discount));
 };
 
 console.table(makeCarsWithDiscount(vehicles, 0.2));
