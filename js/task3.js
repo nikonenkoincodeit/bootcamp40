@@ -9,20 +9,17 @@
  */
 
 const calculator = {
-  a: 0,
-  b: 0,
-
   read(firstValue, secondValue) {
-    this.a = firstValue;
-    this.b = secondValue;
+    this.firstValue = firstValue;
+    this.secondValue = secondValue;
   },
 
   add() {
-    return this.a + this.b;
+    return this.firstValue + this.secondValue;
   },
 
   mult() {
-    return this.a * this.b;
+    return this.firstValue * this.secondValue;
   },
 };
 

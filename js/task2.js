@@ -11,13 +11,13 @@ const phonebook = {
   contacts: [],
 
   add(object) {
-    const contact = {
-      list: 'users',
-      ...object,
+    const newContact = {
       id: this.generateId(),
-      date: this.getDate(),
+      createdAt: this.getDate(),
+      list: 'default',
+      ...object,
     };
-    this.contacts.push(contact);
+    this.contacts.push(newContact);
   },
 
   generateId() {
@@ -33,19 +33,13 @@ const phonebook = {
   },
 };
 
-console.log(
-  phonebook.add({
-    name: 'Mango',
-    email: 'mango@mail.com',
-    list: 'friends',
-  }),
-);
-
-console.log(
+phonebook.add({
+  name: 'Mango',
+  email: 'mango@mail.com',
+  list: 'friends',
+}),
   phonebook.add({
     name: 'Poly',
     email: 'poly@hotmail.com',
   }),
-);
-
-console.log(phonebook.getContacts());
+  console.log(phonebook.getContacts());

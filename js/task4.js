@@ -7,9 +7,7 @@
  */
 
 function counter() {
-  console.log('this :>> ', this);
-  this.i += 1;
-  return this.i;
+  return this.i + 1;
 }
 
 const objA = {
@@ -20,13 +18,8 @@ const objB = {
   i: 400,
 };
 
-console.log(counter());
-console.log(counter());
+const counterA = counter.bind(objA);
+console.log('counterA() :>> ', counterA());
 
-// const counter1 = counter.bind(objA);
-// const counter2 = counter.bind(objB);
-
-// console.log(counter1());
-// console.log(counter1());
-// console.log(counter2());
-// console.log(counter2());
+const counterB = counter.bind(objB);
+console.log('counterB() :>> ', counterB());
