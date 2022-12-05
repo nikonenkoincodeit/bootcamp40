@@ -27,6 +27,8 @@ class Storage {
     const index = this.items.indexOf(item);
     if (index > -1) {
       this.items.splice(index, 1);
+    } else {
+      console.log('Not found');
     }
   }
 }

@@ -16,7 +16,7 @@
  */
 
 class Blogger {
-  constructor({ email = '', age = 0, numberOfPosts = 0, topics = [] }) {
+  constructor({ email = '', age = 0, numberOfPosts = 0, topics = [] } = {}) {
     this.email = email;
     this.age = age;
     this.numberOfPosts = numberOfPosts;

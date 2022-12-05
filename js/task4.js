@@ -27,18 +27,20 @@ class Notes {
   }
 
   removeNote(text) {
-    const index = this.items.findIndex(note => note.text === text);
+    const index = this.items.findIndex(item => item.text === text);
     if (index > -1) {
-      this.items.splice(index, 1);
+      return this.items.splice(index, 1);
     }
+    console.log('Not found!');
   }
 
   updatePriority(text, newPriority) {
-    for (const note of this.items) {
-      if (note.text === text) {
-        note.priority = newPriority;
-      }
+    const item = this.items.find(item => item.text === text);
+    if (!item) {
+      console.log('Not found!');
+      return;
     }
+    item.priority = newPriority;
   }
 }
 
@@ -57,9 +59,4 @@ myNotes.removeNote('hahaha');
 myNotes.updatePriority('Моя вторая заметка', Notes.Priority.HIGH);
 
 myNotes.updatePriority('Моя четвертая заметка', Notes.Priority.HIGH);
-console.table(myNotes.items);
-
-const a = {
-  c: 444,
-  // __proto__:[[kfvkf]]
-};
+console.log(myNotes.items);
