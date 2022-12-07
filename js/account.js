@@ -1,32 +1,28 @@
 const formRef = document.querySelector('.js-form');
+const amountRef = document.querySelector('.js-total-amount');
 const listRef = document.querySelector('.js-list');
-const totalAmountRef = document.querySelector('.js-total-amount');
-
 let total = 0;
 
 formRef.addEventListener('submit', e => {
   e.preventDefault();
-  const value = +e.target.elements.amount.value;
-  const element = createMarkup(value);
+  const value = formRef.amount.valueAsNumber;
+  if (!value) return;
+
   total += value;
-  addMarkup(element);
+  const item = createItem(value);
+  addItem(item);
   updateTotal(total);
-  //   console.log(e.target.elements.amount.form);
-  //   e.target.elements.amount.value = '';
-  e.target.reset();
+  formRef.reset();
 });
 
-function createMarkup(value) {
-  const li = document.createElement('li');
-  li.classList.add('item');
-  li.textContent = value;
-  return li;
+function updateTotal(total) {
+  amountRef.textContent = total;
 }
 
-function addMarkup(element) {
-  listRef.append(element);
+function createItem(value) {
+  return `<li class="item">${value}</li>`;
 }
 
-function updateTotal(value) {
-  totalAmountRef.textContent = value;
+function addItem(item) {
+  listRef.insertAdjacentHTML('beforeend', item);
 }

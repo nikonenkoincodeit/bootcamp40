@@ -4,109 +4,145 @@
 // Тобто з'єднує сторінку з мовою програмування.
 
 //Підключення скриптів
+// const elem = document.querySelector('.js-checkbox');
+// console.log('elem :>> ', elem);
 
-// const itemRef = document.querySelector('input');
-// console.log('itemRef :>> ', itemRef);
 //Атрибут defer
 //Атрибут async
-
-//Пошук елементів
-
-// const refs = {
-//   list: document.getElementById('input'),
-// };
-
-// const inputRef = document.querySelectorAll('.js-list');
-
-// function getElem() {
-//   console.log('inputRef :>> ', inputRef);
-// }
-// getElem();
-// getElem();
-// getElem();
-// getElem();
-// console.log(inputRef);
-// document.getElementById чи просто id
-// getElementsBy*
-// querySelectorAll
-// querySelector
 
 //Навігація по DOM
 //elem.parentNode
 //elem.children
-// closest
-// const listRef = document.querySelector('.js-list');
-// const firstRef = listRef.querySelector('.js-first');
+//closest
 
+// const span = document.querySelector('.js-span-el');
+// console.log('span :>> ', span);
+// console.log('span.parentNode :>> ', span.parentNode);
+// console.log('span.closest :>> ', span.closest('.parent'));
+
+// const list = document.querySelector('.js-list');
+// console.log('list :>> ', list);
+// console.log('list.children :>> ', list.children);
+
+//Пошук елементів
+// getElementById
+// getElementsByName
+// getElementsByTagName
+// getElementsByClassName
+
+// const listRef = document.getElementById('list');
 // console.log('listRef :>> ', listRef);
-// console.log('firstRef :>> ', firstRef);
+// const divsRef = document.getElementsByTagName('div');
+// console.log('divsRef :>> ', divsRef);
 
-// console.log('firstRef.parentNode :>> ', firstRef.closest('body'));
-// console.log('inputRef :>> ', inputRef.children[0]);
+// Сучасні методи:
+// querySelectorAll
+// querySelector
+// const listRef = document.querySelector('.list');
+// const listEl = document.querySelector('.list');
+// const $list = document.querySelector('.list');
+// const liRef = document.querySelectorAll('i');
+// console.log('liRef :>> ', liRef);
+
+// document.getElementById чи просто id
+// const list = document.querySelector('#list');
+// const list = document.getElementById('list');
+// console.log('list :>> ', list);
+
+// const listRef = document.querySelector('.list');
+// // console.log('listRef :>> ', listRef);
+// console.dir(listRef);
+
 //Властивості та атрибути
+
 // value - містить поточний текстовий контент елементів форм.
+// const inputRef = document.querySelector('input');
+// console.log('inputRef :>> ', inputRef);
+// console.log('inputRef.value :>> ', inputRef.value);
+
 // checked - зберігає стан чекбокса або радіокнопки.
-// name - зберігає значення, вказане в HTML-атрибуті name.
-// src  - шлях до зображення тегу <img>.
-// const inputRef = document.querySelector('.js-input');
-// const imgRef = document.querySelector('.js-img');
 // const checkboxRef = document.querySelector('.js-checkbox');
-// inputRef.value = 'new text';
-// console.dir(inputRef.value);
-// imgRef.src = 'cat.png';
-// console.log(checkboxRef.checked);
+// console.log('checkboxRef :>> ', checkboxRef);
+// console.log('checkboxRef.checked :>> ', checkboxRef.checked);
+// name - зберігає значення, вказане в HTML-атрибуті name.
+// const formRef = document.querySelector('form');
+// console.log('formRef :>> ', formRef);
+// console.log('formRef.elements :>> ', formRef.elements);
+// console.log(
+//   'formRef.elements["user-name"] :>> ',
+//   formRef.elements['user-name'],
+// );
+// console.log('formRef["user-name"] :>> ', formRef['user-name']);
+// console.log('formRef["user-name"] :>> ', formRef['user-name'].form);
+// src  - шлях до зображення тегу <img>.
+// const imgRef = document.querySelector('img');
+// console.log('imgRef.src :>> ', imgRef.src);
+// imgRef.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0JH9FItirWMwWY0yGy-_rAIAXQYnju6-Xd5lcA9mF&s'
+
 //Створення та видалення елементів
-//document.createElement(tagName);
-// const textRef = document.querySelector('.js-text');
-// textRef.textContent = 'new new text';
-// textRef.innerText = 'new new text';
-// console.log('textRef.textContent :>> ', textRef.textContent);
-//Властивість textContent
+// const pEl = document.createElement('p');
+// pEl.textContent = 'Hello world!';
+// console.log('pEl :>> ', pEl);
+
+// const pEl = `<p>Hello world</p>`;
+// console.log('pEl :>> ', pEl);
+
+// const imgRef = document.querySelector('img');
+// imgRef.remove();
+
 //Властивість innerHTML
-// console.log('textRef.innerHTML :>> ', textRef.innerHTML);
-// textRef.innerHTML = ``;
+// const html = document.body.innerHTML;
+// console.log('html :>> ', html);
+// const pEl = `<p>Hello world</p>`;
+// document.body.innerHTML = '';
+
+//Метод insertAdjacentHTML()
+// const pEl = `<p>Hello world</p>`;
+// document.body.insertAdjacentHTML('beforeend', pEl);
 
 //Властивість classList
-// const textRef = document.querySelector('.js-text');
-
+const lestRef = document.querySelector('.js-list');
 //contains(cls) - повертає true або false, залежно від наявності класу cls в елемента.
 // console.log(
-//   'textRef.classList.contains() :>> ',
-//   textRef.classList.contains('js-text3'),
+//   'lestRef.classList.contains("list") :>> ',
+//   lestRef.classList.contains('list'),
+// );
+// console.log(
+//   'lestRef.classList.contains("new-list") :>> ',
+//   lestRef.classList.contains('new-list'),
 // );
 //add(cls) - додає клас cls до списку класів елемента.
-// textRef.classList.add('js-text');
+// lestRef.classList.add('new-list-class');
 //remove(cls) - видаляє клас cls зі списку класів елемента.
-// textRef.classList.remove('my-class');
+// lestRef.classList.remove('list');
 //toggle(cls) - якщо відсутній клас cls, то додає його, якщо - присутній, навпаки - видаляє.
-// textRef.classList.toggle('my-class');
+// lestRef.classList.toggle('new-list-class');
 //replace(oldClass, newClass) - замінює існуючий клас oldClass на вказаний newClass.
-// textRef.classList.replace('js-text2', 'js-text3');
+// lestRef.classList.replace('list', 'new-list');
 
 //Властивість style та cssText
 // const textRef = document.querySelector('.js-text');
+// console.log('textRef.style :>> ', textRef.style);
 // textRef.style.color = 'red';
-// textRef.style.backgroundColor = 'blue';
-// textRef.style.cssText = 'color: pink; background-color: green';
+// textRef.style.backgroundColor = 'green';
 
-// const imgRef = document.querySelector('.js-img');
-// imgRef.src = 'https://klike.net/uploads/posts/2019-05/1556708032_1.jpg';
+// textRef.style.cssText = 'color: red; background-color: green;';
+
 //Атрибути
+const inputRef = document.querySelector('input');
 // elem.hasAttribute(name) - перевіряє наявність атрибута, повертає true або false.
-// console.log('imgRef.hasAttribute :>> ', imgRef.hasAttribute('name'));
+// console.log('inputRef.hasAttribute :>> ', inputRef.hasAttribute('name2'));
 // elem.getAttribute(name) - отримує значення атрибута і повертає його.
-// console.log('imgRef.getAttribute :>> ', imgRef.getAttribute('src'));
+// console.log('inputRef.getAttribute :>> ', inputRef.getAttribute('name'));
 // elem.setAttribute(name, value) - встановлює атрибут.
-// imgRef.setAttribute(
-//   'alt',
-//   'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, corporis, temporibus, molestias asperiores ex a consequatur adipisci magni dicta accusantium minima voluptate repellendus. Laborum iure ad voluptates perferendis voluptatibus quia.',
-// );
-// // elem.removeAttribute(name) - видаляє атрибут.
-// imgRef.removeAttribute('src');
-// // elem.attributes - властивість, що повертає об'єкт усіх атрибутів елемента.
-// console.log('imgRef.attributes :>> ', imgRef.attributes);
+// inputRef.setAttribute('data-name', 'poly');
+//  elem.removeAttribute(name) - видаляє атрибут.
+// inputRef.removeAttribute('class');
+//  elem.attributes - властивість, що повертає об'єкт усіх атрибутів елемента.
+// console.log('inputRef.attributes :>> ', inputRef.attributes);
 
 //data-атрибути
-const textRef = document.querySelector('.js-text');
-// console.log('textRef.getAttribute :>> ', textRef.getAttribute('data-id'));
-console.log('textRef.dataset :>> ', textRef.dataset.id);
+// const textRef = document.querySelector('[data-id="22222458"]')
+// console.log('textRef :>> ', textRef);
+// console.log('textRef.dataset :>> ', textRef.dataset);
+// console.log('textRef.dataset.id :>> ', textRef.dataset.id);
