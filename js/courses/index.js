@@ -1,67 +1,73 @@
 // Imports
 import { courses } from './courses.js';
 
-const filtersRef = document.querySelector('.js-filters-container');
-const coursesRef = document.querySelector('.js-courses-container');
+const filtersContainerRef = document.querySelector('.js-filters-container');
+const coursesContainerRef = document.querySelector('.js-courses-container');
 
-function filterTags() {
-  const tags = courses.flatMap(item => item.tags);
-  return [...new Set(tags)];
-  // return tags.filter((item, index, array) => {
-  //   return array.indexOf(item) === index;
-  // });
+function getCoursesTags(courses = []) {
+  return courses
+    .flatMap(({ tags }) => tags)
+    .filter((tag, index, array) => {
+      return array.indexOf(tag) === index;
+    });
 }
 
-function filterCourses(courses = [], tag = '') {
-  return courses.filter(({ tags }) => tags.includes(tag));
+function filterData(array = [], tag) {
+  return array.filter(({ tags }) => tags.includes(tag));
 }
 
-function createListBtns(data = []) {
-  return data
+function init() {
+  const tags = getCoursesTags(courses);
+  const markupBtns = createMarkupBtn(tags);
+  addMarkup(filtersContainerRef, markupBtns);
+
+  const coursesMarkup = createListCourses(courses);
+  addMarkup(coursesContainerRef, coursesMarkup);
+}
+
+init();
+
+/*---------------------------*/
+
+function createMarkupBtn(tags = []) {
+  return tags
     .map(
-      tag => `<button class="button " type="button" data-value="${tag}">
-  ${tag}
-</button>`,
+      tag =>
+        ` <button class="button" type="button" data-value="${tag}">${tag}</button> `,
     )
     .join('');
 }
 
-function createListCourses(data = []) {
-  return data
+function createListCourses(courses = []) {
+  return courses
     .map(({ name, prices }) => {
-      return `<li class="js-item">${name} - ${prices} $</li>`;
+      return `<li>${name} - ${prices} $</li>`;
     })
     .join('');
 }
 
-function updateCourses(courses) {
-  const markupCourses = createListCourses(courses);
-  addMarkup(coursesRef, markupCourses);
+function addMarkup(parent, markup = '') {
+  parent.innerHTML = markup;
 }
-
-function init() {
-  const tags = filterTags();
-  const markupBtns = createListBtns(tags);
-  addMarkup(filtersRef, markupBtns);
-  updateCourses(courses);
-}
-init();
 
 function onFilterCourses(e) {
-  const t = e.target;
-  if (t.tagName !== 'BUTTON') return;
- 
-  const elemActive = this.querySelector('.is-active');
-  if (elemActive) elemActive.classList.remove('is-active');
-  t.classList.add('is-active');
-  
-  const value = t.dataset.value;
-  const filterData = filterCourses(courses, value);
-  updateCourses(filterData);
+  if (e.target.nodeName !== 'BUTTON') return;
+
+  // const elem = e.currentTarget.querySelector('.is-active');
+  // if (elem) elem.classList.remove('is-active');
+
+  for (const elem of e.currentTarget.children) {
+    if (elem.classList.contains('is-active')) {
+      elem.classList.remove('is-active');
+      break;
+    }
+  }
+
+  e.target.classList.add('is-active');
+  const tag = e.target.dataset.value;
+  const filterCourses = filterData(courses, tag);
+  const coursesMarkup = createListCourses(filterCourses);
+  addMarkup(coursesContainerRef, coursesMarkup);
 }
 
-filtersRef.addEventListener('click', onFilterCourses);
-
-function addMarkup(elem, markup = '') {
-  elem.innerHTML = markup;
-}
+filtersContainerRef.addEventListener('click', onFilterCourses);
