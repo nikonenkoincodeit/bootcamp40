@@ -1,48 +1,54 @@
 //_.debounce
+// leading: false,
+// trailing: true,
+
 // Imports
 import { contacts } from './data/contacts.js';
 
 // Variables
 const inputRef = document.querySelector('.js-input');
-const contactsListRef = document.querySelector('.js-contacts-list');
+const listRef = document.querySelector('.js-contacts-list');
 
 // Listeners
-inputRef.addEventListener('input', _.debounce(onInput, 1000));
+inputRef.addEventListener('input', _.debounce(onInput, 3000));
 // Run Functions
 function init() {
-  updateList(contacts);
+  const markup = createList(contacts);
+  addMarkup(markup);
 }
 init();
 // Functions
-function updateList(data = []) {
-  const markup = createList(data);
-  addMarkup(contactsListRef, markup);
-}
 
-function filterData(arr = [], value) {
-  return arr.filter(elem =>
-    elem.name.toUpperCase().includes(value.toUpperCase()),
+function getFilterData(value) {
+  return contacts.filter(({ name }) =>
+    name.toLowerCase().includes(value.toLowerCase()),
   );
 }
 
 function onInput(e) {
-  const value = this.value.trim();
-  if (!value) return updateList(contacts);
-  const fData = filterData(contacts, value);
-  updateList(fData);
+  const value = e.target.value.trim();
+  let data = [];
+  if (!value) {
+    data = contacts;
+  } else {
+    data = getFilterData(value);
+  }
+
+  const markup = createList(data);
+  addMarkup(markup);
 }
 
-function createList(contacts = []) {
-  return contacts
+function createList(arr = []) {
+  return arr
     .map(({ name, rating }) => {
       return ` <li class="list-group-item d-flex justify-content-between align-items-center">
-    <span class="fw-bold flex-grow-1 ms-3">${name}</span>
-    <span class="badge bg-primary rounded-pill">${rating}</span>
-  </li>`;
+      <span class="fw-bold flex-grow-1 ms-3">${name}</span>
+      <span class="badge bg-primary rounded-pill">${rating}</span>
+    </li>`;
     })
     .join('');
 }
 
-function addMarkup(elem, markup = '') {
-  elem.innerHTML = markup;
+function addMarkup(markup = '') {
+  listRef.innerHTML = markup;
 }

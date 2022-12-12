@@ -15,7 +15,7 @@
 // let scrollEventCounter = 0;
 
 // document.addEventListener('scroll', onScroll);
-// document.addEventListener('scroll', _.throttle(onScroll, 3000));
+// document.addEventListener('scroll', _.throttle(onScroll, 500));
 
 // function onScroll() {
 //   scrollEventCounter += 1;
@@ -30,15 +30,19 @@
 //викликана.
 
 //_.debounce( func, wait, options )
+// let scrollEventCounter = 0;
+// document.addEventListener(
+//   'scroll',
+//   _.debounce(onScroll, 500, {
+//     leading: true,
+//     trailing: true,
+//   }),
+// );
 
-let scrollEventCounter = 0;
-
-document.addEventListener('scroll', _.debounce(onScroll, 300));
-
-function onScroll() {
-  scrollEventCounter += 1;
-  console.log(scrollEventCounter);
-}
+// function onScroll() {
+//   scrollEventCounter += 1;
+//   console.log(scrollEventCounter);
+// }
 
 //За замовчуванням метод debounce працює у режимі, коли функція викликається
 //через N мілісекунд після паузи між потоками подій trailing edge (в кінці).

@@ -1,19 +1,15 @@
 //_.throttle
 // Variables
-const bodyRef = document.body;
 const btnRef = document.querySelector('.js-button');
-console.log('bodyRef :>> ', bodyRef);
+// const bodyRef = document.querySelector('body');
+const bodyRef = document.body;
 // Listeners
-btnRef.addEventListener('click', _.throttle(onClickBtn, 500));
+btnRef.addEventListener('click', _.throttle(updateBCpages, 300));
+window.addEventListener('scroll', _.throttle(updateBCpages, 500));
 // Functions
-console.log('bodyRef.style :>> ', bodyRef.style);
-let counter = 0;
-function onClickBtn() {
-  console.log(Date.now());
-  console.log(counter);
-  counter += 1;
-  const color = getRandomHexColor();
-  bodyRef.style.backgroundColor = color;
+
+function updateBCpages() {
+  bodyRef.style.backgroundColor = getRandomHexColor();
 }
 
 function getRandomHexColor() {
