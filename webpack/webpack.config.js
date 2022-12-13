@@ -1,9 +1,9 @@
-const path = require("path");
-const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HTMLWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
 module.exports = {
-  entry: path.resolve(__dirname, "./src/index.js"),
+  entry: path.resolve(__dirname, "./src/main.js"),
   output: { path: path.resolve(__dirname, "build"), filename: "main.js" },
   plugins: [
     new HTMLWebpackPlugin({
@@ -16,7 +16,12 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          { loader: "css-loader" },
+        ],
       },
       {
         test: /\.(png|jpg|gif)$/,
@@ -28,5 +33,11 @@ module.exports = {
         use: ["babel-loader"],
       },
     ],
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "src"),
+    },
+    port: 8081,
   },
 };

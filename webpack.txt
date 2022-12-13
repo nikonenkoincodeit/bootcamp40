@@ -2,7 +2,8 @@
 2) npm install --save-dev webpack webpack-cli webpack-dev-server
 
 3) "scripts": {
-    "start": "webpack --mode development --open"
+    "start": "webpack --mode development --open",
+    "build": "webpack --mode production"
   },
 
 4) 

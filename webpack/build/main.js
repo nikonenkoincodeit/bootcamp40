@@ -1,0 +1,1 @@
+(()=>{"use strict";var r=[25,47,85].filter((function(r){return r>30}));console.log(r)})();
