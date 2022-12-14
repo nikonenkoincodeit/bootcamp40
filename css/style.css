@@ -54,5 +54,6 @@ button {
   color: rgb(7, 35, 247);
 }
 .text.checked {
+  opacity: 0.8;
   text-decoration: line-through;
 }

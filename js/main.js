@@ -1,81 +1,81 @@
-import { formRef, listRef } from "./refs/index.js";
-import { addData, getData, updateLocalStorage } from "./api/index.js";
-import { createMarkup } from "./markup/index.js";
+import { listRef, formRef } from "../refs/index.js";
+import { sendData, getData, saveData } from "../api/index.js";
+import { createItem } from "../template/index.js";
 
-console.log("111 :>> ", 111);
+function getDataForm(e) {
+  //   const obj = {};
+  //   Array.from(elements).forEach((item) => {
+  //     if (item.tagName === "INPUT") obj[item.name] = item.value.trim();
+  //   });
+  //   console.log("obj :>> ", obj);
+  //   console.log("Array.from(elements) :>> ", Array.from(elements));
 
-function onSubmit(e) {
   e.preventDefault();
-  //   const value = e.target.elements.name.value;
-  const value = e.target.name.value.trim();
+  const {
+    elements: { name: inputRef },
+  } = e.target;
+
+  const value = inputRef.value.trim();
 
   if (!value) return;
-  const data = createObjData(value);
-  addData(data);
-  const markup = createMarkup([data]);
-  addMarkup(listRef, markup);
+  const data = createObjTask(value);
+  const markup = createItem(data);
+  addMarkup(markup);
+  sendData(data);
   e.target.reset();
 }
 
-function createObjData(value = "") {
-  return {
-    id: Date.now(),
-    value,
-    checked: false,
-  };
+function createObjTask(value = "") {
+  return { value, checked: false, id: Date.now() };
 }
 
-function getDataFromLocal() {
-  const dataJSON = getData();
-  return dataJSON ? JSON.parse(dataJSON) : null;
+function addMarkup(markup = "") {
+  listRef.innerHTML += markup;
+}
+
+function createListTask(data = []) {
+  const markup = data.map(createItem).join("");
+  addMarkup(markup);
 }
 
 (function () {
-  const data = getDataFromLocal();
-  if (!data) return;
-
-  const markup = createMarkup(data);
-  addMarkup(listRef, markup);
+  const data = getData();
+  if (!data.length) return;
+  createListTask(data);
 })();
 
-function onClickBtn(e) {
+function getDataParent(e) {
+  const parent = e.target.closest(".js-item");
+  const idTask = parent.dataset.id;
+  return { parent, idTask };
+}
+
+function removeTask(e) {
   if (e.target.tagName !== "BUTTON") return;
-  const parent = e.target.closest(".item");
-  const id = parent.dataset.id;
-  console.log("id :>> ", id);
-  const filterData = removeData(id);
-  updateLocalStorage(filterData);
+  const { parent, idTask } = getDataParent(e);
+  const data = getData().filter(({ id }) => id !== +idTask);
+  if (!data.length) return;
+  saveData(data);
   parent.remove();
 }
 
-function onClickText(e) {
+function updateTask(e) {
   if (e.target.tagName !== "P") return;
-  const parent = e.target.closest(".item");
-  const id = parent.dataset.id;
-  const data = updateData(id);
-  updateLocalStorage(data);
-  e.target.classList.toggle("checked");
-}
-
-function updateData(objId) {
-  const data = getDataFromLocal();
+  const { parent, idTask } = getDataParent(e);
+  const tasks = getData();
+  const data = tasks.find(({ id }) => id === +idTask);
   if (!data) return;
-  const obj = data.find(({ id }) => id === Number(objId));
-  if (!obj) return;
-  obj.checked = !obj.checked;
-  return data;
+  const checked = parent.querySelector(".text").classList.toggle("checked");
+
+  const upData = tasks.map((task) => {
+    if (task.id === +idTask) {
+      return { ...task, checked };
+    }
+    return task;
+  });
+  saveData(upData);
 }
 
-function removeData(objId) {
-  const data = getDataFromLocal();
-  if (!data) return;
-  return data.filter(({ id }) => id !== Number(objId));
-}
-
-function addMarkup(element, markup = "") {
-  element.insertAdjacentHTML("beforeend", markup);
-}
-
-formRef.addEventListener("submit", onSubmit);
-listRef.addEventListener("click", onClickBtn);
-listRef.addEventListener("click", onClickText);
+formRef.addEventListener("submit", getDataForm);
+listRef.addEventListener("click", removeTask);
+listRef.addEventListener("click", updateTask);
