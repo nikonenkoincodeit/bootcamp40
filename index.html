@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/png" href="./img/flashcard.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>Flashcards</title>
+</head>
+
+<body>
+
+  <main>
+
+    <header>
+      <div class="container">
+        <div id="header">
+          <h1>Flashcards</h1>
+          <div>
+            <button id="show_card_box">Add Card</button>
+            <button id="delete_cards">Del Cards</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="container">
+        <form class="js-form is-hidden" id="create_card">
+          <h2>Create Flashcard</h2>
+          <label for="question">Question</label>
+          <textarea id="question" name="question" maxlength="280"></textarea>
+          <label for="answer" maxlength="280">Answer</label>
+          <br>
+          <textarea id="answer" name="answer"></textarea>
+          <div>
+            <button id="save_card" type="submit">Save</button>
+            <button class="js-close_card_box" type="button">Close</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <ul id="flashcards">
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="./main.js" type="module"></script>
+</body>
+
+</html>
