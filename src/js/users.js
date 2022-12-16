@@ -1,35 +1,34 @@
-import data from "../data/employees.json";
-import { tableBody } from "./refs";
+import data from "../data/employees.js";
+
+const tableBodyRef = document.querySelector(".js-table-body");
+
 console.log("data :>> ", data);
 
-(function init() {
+(function () {
   const markup = createMarkup(data);
-  addMarkup(tableBody, markup);
+  addMarkup(markup);
 })();
 
-function addMarkup(elem, markup = "") {
-  elem.innerHTML = markup;
+function addMarkup(markup = "") {
+  tableBodyRef.innerHTML = markup;
 }
 
 function createMarkup(data = []) {
+  const currentDate = new Date();
+  const m = currentDate.getMonth();
+  const d = currentDate.getDate();
   return data
     .map(({ username, birthDay }, index) => {
-      const d1 = new Date();
-      const d2 = new Date(birthDay);
-      const age = d1.getFullYear() - d2.getFullYear();
-      const day1 = d1.getDate();
-      const day2 = d2.getDate();
-
-      const m = d1.getMonth();
-      const m2 = d2.getMonth();
-      const result = (day1, m).toString() === (day2, m2).toString();
-      console.log("result :>> ", result);
-      return `    <tr>
-    <th scope="row">${index + 1}</th>
-    <td>${username}</td>
-    <td>${age}</td>
-    <td>${result ? "Yes" : "No"}</td>
-  </tr>`;
+      const userDate = new Date(birthDay);
+      const mU = userDate.getMonth();
+      const dU = userDate.getDate();
+      const year = currentDate.getFullYear() - userDate.getFullYear();
+      return `<tr>
+      <th scope="row">${index + 1}</th>
+      <td>${username}</td>
+      <td>${year}</td>
+      <td>${m === mU && d === dU ? "yes" : "no"}</td>
+    </tr>`;
     })
     .join("");
 }
