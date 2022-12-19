@@ -23,13 +23,12 @@ const getRandomDelay = () => Math.ceil(Math.random() * 2000);
 
 const makePromise = framework => {
   const delay = getRandomDelay();
-  return new Promise((res, rej) => {
+  return new Promise((response, reject) => {
     setTimeout(() => {
-      if (Math.random() > 1) {
-        res({ framework, delay });
-      } else {
-        rej({ framework, delay, error: 'Promise error' });
+      if (delay > 1900) {
+        response({ framework, delay });
       }
+      reject({ framework, delay, error: 'Promise error' });
     }, delay);
   });
 };
@@ -37,6 +36,7 @@ const makePromise = framework => {
 // const promises = frameworks.map(framework => makePromise(framework));
 const promises = frameworks.map(makePromise);
 // console.log('promises :>> ', promises);
+
 /*
  * За допомогою Promise.race дочекайтеся завантаження першого промісу, що спрацював, і виведіть результат його роботи на екран: `✅ ${Framework_name} won with ${delay} ms`
  * або результат помилки: `❌ ${error}! ${name} rejected in ${delay} ms`
@@ -64,9 +64,10 @@ const promises = frameworks.map(makePromise);
 
 // Promise.all(promises)
 //   .then(response => {
-//     response.forEach(item => handleSuccessAll(item));
+//     console.log('response :>> ', response);
+//     response.forEach(handleSuccessAll);
 //   })
-//   .catch(error => handleError(error));
+//   .catch(handleError);
 
 /*
  * За допомогою Promise.allSettled отримайте масив результатів.
@@ -84,6 +85,7 @@ const promises = frameworks.map(makePromise);
 
 // const handleError = ({ framework, delay, error }) =>
 //   console.log(`❌ ${error}! ${framework} rejected in ${delay} ms`);
+
 // Promise.allSettled(promises).then(response => {
 //   console.log('response :>> ', response);
 //   response.forEach(obj => {
@@ -107,7 +109,11 @@ const promises = frameworks.map(makePromise);
 
 // const handleError = ({ framework, delay, error }) =>
 //   console.log(`❌ ${error}! ${framework} rejected in ${delay} ms`);
-// console.log('promises :>> ', promises);
+
 // Promise.any(promises)
 //   .then(response => handleSuccess(response))
-//   .catch(error => console.log('error :>> ', error));
+//   .catch(error => {
+//     console.log('error.errors :>> ', error.errors);
+//     console.log('error.message :>> ', error.message);
+//     console.log('error.stack :>> ', error.stack);
+//   });

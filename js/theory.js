@@ -1,23 +1,33 @@
-// Promise - об'єкт JavaScript для сторення асинхроних операцій.
+//Callback Hell
+//Іноді у вас є ряд завдань, де кожен крок залежить від результатів попереднього кроку.
+//Тому не важко отримати таке у синхронному коді:
 
-// const promise = new Promise((resolve, reject) => {});
+// const text = readFile(fileName),
+//   tokens = tokenize(text),
+//   parseTree = parse(tokens),
+//   optimizedTree = optimize(parseTree),
+//   output = evaluate(optimizedTree);
+// console.log(output);
 
-// Створення
+//При спробі зробити це в асинхронному коді, дуже легко отримати т.з.
+//callback-пекло - розповсюджену проблему, коли callback функції "застрягають"
+//глибоко всередині один одної. Node.js або front-end код з великою кількістю AJAX-запитів
+//дуже часто під ризиком виглядати приблизно так:
+//https://dev.to/jerrycode06/callback-hell-and-how-to-rescue-it-ggj
 
-//resolve(value) - функція для виклику у разі успішної операції. Переданий їй аргумент
-//буде значенням виконаного промісу.
-//reject(error) - функція для виклику у разі помилки. Переданий їй аргумент буде значенням
-//відхиленого промісу.
+//Promises є популярним способом позбавлення від callback-пекла. Спочатку це був
+//тип конструкції, представлений такими бібліотеками JavaScript, як Q і when.js, але ці
+//типи бібліотек стали достатньо популярними, що Promises тепер надаються і в ECMAScript 6.
 
-// const promise = new Promise((res, rej) => {
-//   if (false) {
-//     res('успіх');
-//   } else {
-//     rej('невдача');
-//   }
-// });
+//Ідея полягає в тому, що замість того, щоб використовувати функції, які приймають вхідні
+//дані і callback, ми створюємо функцію, яка повертає об'єкт promise, тобто, об'єкт, що
+//представляє значення, яке буде існувати в майбутньому.
 
-// promise.then(console.log);
+// Promise (обіцянка, проміс) - об'єкт, що представляє поточний стан асинхронної
+//операції. Це обгортка для значення, невідомого на момент створення промісу.
+//Дозволяє обробляти результати асинхронних операцій таким чином, якби вони були
+//синхронними: замість кінцевого результату асинхронної операції, повертається
+//своєрідна обіцянка отримати результат у майбутньому.
 
 // Проміс може бути у трьох станах:
 
@@ -25,144 +35,106 @@
 // Виконано (fulfilled) - операція виконана успішно з будь-яким результатом.
 // Відхилено (rejected) - операція відхилена з помилкою.
 
-// const promise = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     if (true) {
-//       res('успіх');
-//     } else {
-//       rej('невдача');
-//     }
-//   }, 3000);
-// });
-// console.log('promise :>> ', promise);
-// promise.then(console.log);
+// Створення
+const promise = new Promise((resolve, reject) => {
+  const flag = Math.random() > 0.5;
+  setTimeout(() => {
+    if (flag) {
+      resolve('111');
+    }
+    reject('222');
+  });
+});
+
+//resolve(value) - функція для виклику у разі успішної операції. Переданий їй аргумент
+//буде значенням виконаного промісу.
+//reject(error) - функція для виклику у разі помилки. Переданий їй аргумент буде значенням
+//відхиленого промісу.
 
 //Метод then()
 
-// const promise = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     if (false) {
-//       res('успіх');
-//     } else {
-//       rej('невдача');
-//     }
-//   }, 3000);
-// });
-// console.log('promise :>> ', promise);
 // promise.then(
 //   response => {
-//     console.log('успіх :>> ', response);
-//   },
-//   response => {
-//     console.log('помилка :>> ', response);
+//     console.log('response :>> ', response);
 //   }
+//   //   error => {
+//   //     console.log('error :>> ', error);
+//   //   }
 // );
 
 //Метод catch()
 
-// const promise = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     if (false) {
-//       res('успіх');
-//     } else {
-//       rej('невдача');
-//     }
-//   }, 3000);
+// promise.catch(error => {
+//   console.log('error :>> ', error);
 // });
-
-// promise
-//   .then(response => {
-//     console.log('успіх :>> ', response);
-//   })
-//   .catch(error => console.log('error :>> ', error));
 
 //Метод finally()
 
-// const promise = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     if (true) {
-//       res('успіх');
-//     } else {
-//       rej('невдача');
-//     }
-//   }, 3000);
-// });
-
 // promise
 //   .then(response => {
-//     console.log('успіх :>> ', response);
+//     console.log('response :>> ', response);
 //   })
-//   .catch(error => console.log('error :>> ', error))
+//   .catch(error => {
+//     console.log('error :>> ', error);
+//   })
 //   .finally(() => {
 //     console.log('finally :>> ');
 //   });
 
 //Ланцюжки промісів
 
-// const promise = new Promise((res, rej) => {
-//   setTimeout(() => {
-//     if (true) {
-//       res(1);
-//     } else {
-//       rej('невдача');
-//     }
-//   }, 3000);
-// });
-
 // promise
 //   .then(response => {
-//     console.log('успіх :>> ', response);
-//     return response + 1;
+//     return response * 2;
 //   })
 //   .then(response => {
-//     console.log('успіх :>> ', response);
-//     return Promise.reject('Error');
+//     return response * 2;
 //   })
 //   .then(response => {
-//     console.log('успіх :>> ', response);
-//     return response + 1;
+//     return response * 2;
 //   })
-//   .catch(error => console.log('error :>> ', error));
+//   .then(response => {
+//     return response * 2;
+//   })
+//   .then(response => {
+//     return response * 2;
+//   })
+//   .then(response => {
+//     return response * 2;
+//   })
+//   .then(response => {
+//     console.log('response :>> ', response);
+//   })
+//   .catch(error => {
+//     console.log('error :>> ', error);
+//   })
+//   .finally(() => {
+//     console.log('finally :>> ');
+//   });
 
 //Промісифікація функцій
-
-// const foo = callback => {
-//   setTimeout(() => {
-//     callback('Hello, Poly');
-//   }, 2000);
-// };
-
-// const foo2 = payload => {
-//   console.log('payload :>> ', payload);
-// };
-
-// foo(foo2);
-
-// const foo = () => {
-//   return new Promise((res, rej) => {
-//     setTimeout(() => {
-//       res('Hello, Poly');
-//     }, 2000);
-//   });
-// };
-
-// const foo2 = payload => {
-//   console.log('payload :>> ', payload);
-// };
-
-// foo().then(foo2);
-
 //Промісифікація - це перетворення функції з колбеками таким чином, щоб вона не приймала
 //колбеки, а повертала проміс.
 
+// function makePromise() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve('fulfilled');
+//     }, 3000);
+//   });
+// }
+
+// makePromise().then(console.log);
+
 //Методи класу Promise
 
+//Статичні методи для створення промісів, що миттєво успішно виконуються або відхиляються.
+//Працюють аналогічно new Promise() за винятком можливості вказати затримку, але мають
+//коротший синтаксис.
 //Promise.resolve() і Promise.reject()
 
-// const promise = Promise.resolve(1);
-// const promiseError = Promise.reject('error');
-// console.log('promise :>> ', promise);
-// console.log('promiseError :>> ', promiseError);
+// Promise.resolve('123').then(console.log);
+// Promise.reject('error').catch(console.log);
 
 //Promise.all()
 //Приймає масив промісів, очікує їх виконання і повертає проміс. Якщо всі проміси
@@ -171,46 +143,43 @@
 //буде відхилений, проміс, що повертається, перейде у стан rejected, а його значенням буде
 //помилка.
 //Promise.all([promise1, promise2, promise3, ...])
-// const promise1 = Promise.resolve(1);
-// const promise2 = Promise.reject('error');
-// const promise3 = Promise.resolve(3);
+
+// const promise1 = Promise.resolve('111');
+// const promise2 = Promise.reject('222');
+// const promise3 = Promise.resolve('333');
+
 // Promise.all([promise1, promise2, promise3])
-//   .then(console.log)
-//   .catch(console.log);
+//   .then(response => {
+//     console.log('response :>> ', response);
+//   })
+//   .catch(error => console.log('error :>> ', error));
 
 //Promise.race()
 //Повертає виконаний або відхилений проміс, залежно від того, з яким результатом
 //завершиться «найшвидший» з переданих промісів, зі значенням або причиною його відхилення.
 //Promise.race([promise1, promise2, promise3, ...])
 
-// const promise1 = Promise.resolve(1);
-// const promise2 = Promise.reject('error');
-// const promise3 = Promise.resolve(3);
+// const promise1 = Promise.resolve('111');
+// const promise2 = Promise.reject('222');
+// const promise3 = Promise.resolve('333');
+
 // Promise.race([promise1, promise2, promise3])
-//   .then(console.log)
-//   .catch(console.log);
-
-//Promise.allSettled
-//Статичні методи для створення промісів, що миттєво успішно виконуються або відхиляються.
-//Працюють аналогічно new Promise() за винятком можливості вказати затримку, але мають
-//коротший синтаксис.
-//Promise.allSettled([promise1, promise2, promise3, ...])
-
-// const promise1 = Promise.resolve(1);
-// const promise2 = Promise.reject('error');
-// const promise3 = Promise.resolve(3);
-// Promise.allSettled([promise1, promise2, promise3])
-//   .then(console.log)
-//   .catch(console.log);
+//   .then(response => {
+//     console.log('response :>> ', response);
+//   })
+//   .catch(error => console.log('error :>> ', error));
 
 //Promise.any
 //Promise.any(array) - як тільки один із промісів виконається успішно, метод поверне
 //значення виконаного промісу. Якщо жоден із промісів не завершиться успішно, тоді
 //повернутий Promise буде відхилено
 
-// const promise1 = Promise.reject('error 1');
-// const promise2 = Promise.reject('error 2');
-// const promise3 = Promise.resolve(3);
-// Promise.any([promise1, promise2, promise3])
-//   .then(console.log)
-//   .catch(console.log);
+// const promise1 = Promise.resolve('111');
+const promise2 = Promise.reject('222');
+const promise3 = Promise.resolve('333');
+
+Promise.any([promise2, promise3])
+  .then(response => {
+    console.log('response :>> ', response);
+  })
+  .catch(error => console.log('error :>> ', error));
