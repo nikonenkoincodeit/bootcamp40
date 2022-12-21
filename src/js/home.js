@@ -1,23 +1,23 @@
 import { getData } from "../api";
-import { markupUsersList } from "../markup";
-import { addMarkup } from "../util";
 import { tbodyRef } from "../refs";
+import { createUsersTable } from "../markup";
+import { addMarkup } from "../helpers";
 
-(function () {
-  getData("users")
-    .then((data) => {
-      const markup = markupUsersList(data);
-      addMarkup(tbodyRef, markup);
-    })
-    .catch((error) => {
-      alert(error.messages);
-    });
-})();
+getData("users")
+  .then((response) => {
+    const markup = createUsersTable(response);
+    addMarkup(tbodyRef, markup);
+  })
+  .catch((error) => {
+    alert(error.message);
+  });
 
-function onClickUser(e) {
-  if (!e.target.closest("tr")) return;
-  const id = e.target.closest("tr").dataset.userid;
-  location.href = "user.html?userid=" + id;
-}
-
-tbodyRef.addEventListener("click", onClickUser);
+const getUserData = (e) => {
+  const t = e.target;
+  const parent = t.closest(".js-t-row");
+  if (!parent) return;
+  const userId = parent.dataset.userid;
+  location.href = "/user.html?userId=" + userId;
+};
+console.log(location);
+tbodyRef.addEventListener("click", getUserData);
