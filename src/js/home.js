@@ -19,5 +19,5 @@ const getUserData = (e) => {
   const userId = parent.dataset.userid;
   location.href = "/user.html?userId=" + userId;
 };
-console.log(location);
+
 tbodyRef.addEventListener("click", getUserData);
