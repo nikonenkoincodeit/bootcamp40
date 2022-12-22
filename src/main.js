@@ -1,47 +1,62 @@
-import { rowRef, btnRef } from "./refs";
-import { addMarkup } from "./util";
-import { getData } from "./api";
-import { markupListCards } from "./markup";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/style.css";
 
-const data = {
-  limit: 40,
-  _skip: 0,
-  maxProducts: 0,
-  get skip() {
-    return this._skip;
-  },
-  set skip(value) {
-    this._skip = value;
-    if (this._skip >= this.maxProducts) {
-      btnRef.classList.add("is-hidden");
-      alert("finis");
-    } else {
-      btnRef.classList.remove("is-hidden");
-    }
-  },
+import { getData } from "./api";
+import { createCard } from "./markup";
+import { rowRef, btnRef } from "./refs";
+import { addMarkup } from "./helpers";
+
+// //'products?limit=10&skip=10&select=title,price
+
+const productSettings = {
+  limit: 20,
+  skip: 1,
 };
 
-function getProducts(limit = 20, s = 0) {
-  btnRef.classList.add("is-hidden");
-  getData(`products?limit=${limit}&skip=${s}`)
+const toggleBtn = () => {
+  btnRef.classList.toggle("is-hidden");
+};
+
+let callback = (entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      addCards(productSettings);
+      observer.unobserve(entry.target);
+    }
+  });
+};
+
+const options = {
+  threshold: 0.1,
+  rootMargin: "0px 0px 150px 0px",
+};
+
+let observer = new IntersectionObserver(callback, options);
+
+function addCards({ limit = 20, skip = 1 } = {}) {
+  const searchParams = new URLSearchParams({ limit, skip });
+
+  getData("products?" + searchParams)
     .then(({ products, total }) => {
-      data.maxProducts = total;
-      data.skip += data.limit;
-      const markup = markupListCards(products);
+      productSettings.skip += productSettings.limit;
+      const markup = createCard(products);
       addMarkup(rowRef, markup);
+
+      if (productSettings.skip < total) {
+        // toggleBtn();
+        const lastCard = rowRef.lastChild;
+
+        observer.observe(lastCard);
+      } else alert("Stop!");
     })
-    .catch((error) => {
-      alert(error.messages);
-    });
+    .catch(console.log);
 }
+addCards(productSettings);
 
-getProducts(data.limit, data.skip);
+// const addMoreCards = () => {
+//   toggleBtn();
 
-function onClickBtn() {
-  getProducts(data.limit, data.skip);
-}
+//   addCards(productSettings);
+// };
 
-btnRef.addEventListener("click", onClickBtn);
+// btnRef.addEventListener("click", addMoreCards);
