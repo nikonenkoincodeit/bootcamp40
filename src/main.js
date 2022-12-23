@@ -1,5 +1,7 @@
 import { listRef, formRef, loginBtnRef, signOutBtnRef } from "./refs";
 import { createMarkup } from "./markup";
+import { sendData, getData, deleteItem, updateItem } from "./api";
+import { onSignInWithPopup, onSignOut } from "./api/auth";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/style.css";
@@ -10,6 +12,10 @@ async function onSubmit(e) {
   if (!value) return;
 
   try {
+    const data = createDataObj(value);
+    sendData(data);
+    const markup = createMarkup([data]);
+    addMarkup(markup);
   } catch (error) {
     console.log(error);
   }
@@ -17,7 +23,21 @@ async function onSubmit(e) {
   e.target.reset();
 }
 
-(async function () {})();
+getData()
+  .then((response) => {
+    const array = [];
+    Object.entries(response).forEach(([key, value]) => {
+      value.id = key;
+      array.push(value);
+    });
+    const markup = createMarkup(array);
+    addMarkup(markup);
+  })
+  .catch((error) => {
+    console.log("error :>> ", error);
+  });
+
+// (async function () {})();
 
 function createDataObj(value) {
   return { value, checked: false };
@@ -33,10 +53,13 @@ function getParentId(e) {
   return { id, parentRef };
 }
 
-async function onClick(e) {
+function onClick(e) {
   if (e.target.tagName !== "BUTTON") return;
 
   try {
+    const { id, parentRef } = getParentId(e);
+    parentRef.remove();
+    deleteItem(id);
   } catch (error) {
     console.log("error :>> ", error);
   }
@@ -46,14 +69,18 @@ async function onClickText(e) {
   if (e.target.tagName !== "P") return;
 
   try {
+    const { id, parentRef } = getParentId(e);
+    const checked = parentRef.classList.toggle("checked");
+
+    updateItem(id, checked);
   } catch (error) {
     console.log("error :>> ", error);
   }
 }
 // console.log(loginBtnRef);
 
-signOutBtnRef.addEventListener("click", signOutUser);
-loginBtnRef.addEventListener("click", onloginUser);
+signOutBtnRef.addEventListener("click", onSignOut);
+loginBtnRef.addEventListener("click", onSignInWithPopup);
 listRef.addEventListener("click", onClick);
 listRef.addEventListener("click", onClickText);
 formRef.addEventListener("submit", onSubmit);
