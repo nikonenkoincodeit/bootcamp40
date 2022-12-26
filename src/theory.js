@@ -1,75 +1,79 @@
 const BASE_URL = "http://localhost:3000/data";
 
 //GET
-// function getData() {
-//   return fetch(BASE_URL).then((response) => {
-//     if (response.ok) {
-//       return response.json();
-//     }
-//     throw new Error(response.statusText);
-//   });
-// }
+const getData = () => {
+  return fetch(BASE_URL).then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error(response.statusText);
+  });
+};
 
-// getData().then(console.log).catch(console.log);
+getData().then(console.log).catch(console.log);
 
 //POST
-// function getData() {
-//   return fetch(BASE_URL, {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({ name: "Mango", age: 20 }),
-//   }).then((response) => {
-//     if (response.ok) {
-//       return response.json();
-//     }
-//     throw new Error(response.statusText);
-//   });
-// }
+const sendData = (data = {}) => {
+  return fetch(BASE_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  }).then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error(response.statusText);
+  });
+};
+// sendData({ value: "купити курку!", checked: false })
+//   .then(console.log)
+//   .catch(console.log);
 
-// getData().then(console.log).catch(console.log);
-
-// //DELETE
-// function getData() {
-//   return fetch(BASE_URL + "/1", {
-//     method: "DELETE",
-//   }).then((response) => {
-//     if (response.ok) {
-//       return response.json();
-//     }
-//     throw new Error(response.statusText);
-//   });
-// }
-
-// getData().then(console.log).catch(console.log);
-
+//DELETE
+const deleteItem = (id) => {
+  return fetch(BASE_URL + "/" + id, {
+    method: "DELETE",
+  }).then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error(response.statusText);
+  });
+};
+// deleteItem(2).then(console.log).catch(console.log);
 //PUT
-// function getData() {
-//   return fetch(BASE_URL + "/1", {
+// const updateItem = (id, data = {}) => {
+//   return fetch(BASE_URL + "/" + id, {
 //     method: "PUT",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({ age: 30 }),
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(data),
 //   }).then((response) => {
 //     if (response.ok) {
 //       return response.json();
 //     }
 //     throw new Error(response.statusText);
 //   });
-// }
-
-// getData().then(console.log).catch(console.log);
+// };
+// updateItem(3, { value: "купити курку!" }).then(console.log).catch(console.log);
 
 //PATCH
-// function getData() {
-//   return fetch(BASE_URL + "/2", {
-//     method: "PATCH",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({ age: 35 }),
-//   }).then((response) => {
-//     if (response.ok) {
-//       return response.json();
-//     }
-//     throw new Error(response.statusText);
-//   });
-// }
 
-// getData().then(console.log).catch(console.log);
+const updateItem = (id, data = {}) => {
+  return fetch(BASE_URL + "/" + id, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  }).then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error(response.statusText);
+  });
+};
+updateItem(2, { value: "купити курку!" }).then(console.log).catch(console.log);

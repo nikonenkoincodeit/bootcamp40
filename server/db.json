@@ -6,9 +6,39 @@
       "id": 1
     },
     {
-      "value": "купити води",
+      "value": "купити курку!",
       "checked": false,
-      "id": 3
+      "id": 2
+    }
+  ],
+  "contacts": [
+    {
+      "createdAt": "2022-10-20T23:44:33.963Z",
+      "name": "Poly",
+      "email": "Ellie@mail.com",
+      "number": "655-496-6787",
+      "id": "2"
+    },
+    {
+      "createdAt": "2022-11-12T21:55:50.075Z",
+      "name": "Mango",
+      "email": "Ellie@mail.com",
+      "number": "655-496-6787",
+      "id": "3"
+    },
+    {
+      "createdAt": "2022-12-15T12:40:50.290Z",
+      "name": "Ellie",
+      "email": "Ellie@mail.com",
+      "number": "655-496-6787",
+      "id": "4"
+    },
+    {
+      "createdAt": "2022-10-25T23:05:35.426Z",
+      "name": "Ellie",
+      "email": "Ellie@mail.com",
+      "number": "655-496-6787",
+      "id": "5"
     }
   ]
 }

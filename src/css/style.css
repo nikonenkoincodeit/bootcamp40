@@ -64,3 +64,11 @@ ol {
 .list {
   padding: 20px;
 }
+
+.form {
+  background-color: white;
+  max-width: 500px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+}

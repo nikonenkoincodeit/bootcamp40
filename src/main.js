@@ -1,72 +1,81 @@
 import { getData, sendData, deleteData, updateData } from "./api";
-import { listRef, formRef } from "./refs";
-import { createMarkup } from "./markup";
+import { createCard } from "./markup";
+import { contactRef, formRef } from "./refs";
+
+console.dir("contactRef :>> ", contactRef);
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/style.css";
 
-function onSubmit(e) {
-  e.preventDefault();
-  const value = e.target.message.value.trim();
-  if (!value) return;
+// import "./theory";
 
-  const data = createDataObj(value);
+getData()
+  .then((response) => {
+    const markup = createCard(response);
+    updateContactsList(markup);
+  })
+  .catch((error) => {
+    console.log("error :>> ", error);
+  });
+
+const updateContactsList = (markup = "") => {
+  contactRef.insertAdjacentHTML("beforeend", markup);
+};
+
+const createDataContact = (elements = []) => {
+  const data = {};
+  Array.from(elements).forEach(({ name, value }) => {
+    if (value) {
+      data.createdAt = Date.now();
+      data[name] = value;
+    }
+  });
+  return data;
+};
+
+const onSubmit = (e) => {
+  e.preventDefault();
+
+  const { elements } = e.target;
+  const data = createDataContact(elements);
+
   sendData(data)
     .then((response) => {
-      const markup = createMarkup([response]);
-      addMarkup(markup);
+      const markup = createCard([response]);
+      updateContactsList(markup);
     })
-    .catch(console.log);
-  e.target.reset();
-}
+    .catch((error) => {
+      console.log("error :>> ", error);
+    })
+    .finally(() => e.target.reset());
+};
 
-(function () {
-  getData()
+const onDeleteItem = (e) => {
+  const t = e.target;
+  if (!t.classList.contains("btn-close")) {
+    return;
+  }
+  const parent = t.closest(".js-wrap-card");
+  const cardId = parent.dataset.cardid;
+  deleteData(cardId)
     .then((response) => {
-      if (!response.length) return;
-      const markup = createMarkup(response);
-      addMarkup(markup);
+      console.log("response :>> ", response);
+      parent.remove();
     })
     .catch(console.log);
-})();
+};
 
-function createDataObj(value) {
-  return { value, checked: false };
-}
-
-function addMarkup(markup = "") {
-  listRef.insertAdjacentHTML("beforeend", markup);
-}
-
-function getParentId(e) {
-  const parentRef = e.target.closest("li");
-  const id = parentRef.dataset.id;
-  return { id, parentRef };
-}
-
-function onClick(e) {
-  if (e.target.tagName !== "BUTTON") return;
-  const { id, parentRef } = getParentId(e);
-  deleteData(id)
-    .then((response) => {
-      console.log(response);
-      parentRef.remove();
-    })
+const onInput = (e) => {
+  const t = e.target;
+  if (!e.target.classList.contains("fw-bold")) {
+    return;
+  }
+  const cardId = t.closest(".js-wrap-card").dataset.cardid;
+  updateData(cardId, { name: t.textContent })
+    .then(console.log)
     .catch(console.log);
-}
+};
 
-function onClickText(e) {
-  if (e.target.tagName !== "P") return;
-  const { id, parentRef } = getParentId(e);
-  const flag = parentRef.classList.contains("checked");
-  updateData(id, { checked: !flag })
-    .then(({ checked }) => {
-      const method = checked ? "add" : "remove";
-      parentRef.classList[method]("checked");
-    })
-    .catch(console.log);
-}
-
-listRef.addEventListener("click", onClick);
-listRef.addEventListener("click", onClickText);
 formRef.addEventListener("submit", onSubmit);
+contactRef.addEventListener("input", onInput);
+contactRef.addEventListener("click", onDeleteItem);
