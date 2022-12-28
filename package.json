@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack --mode development",
     "start": "webpack server --mode development --open",
+    "build": "webpack",
     "server": "json-server -w server/db.json"
   },
   "keywords": [],
