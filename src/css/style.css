@@ -1,66 +1,48 @@
 body {
-  margin: 0;
-  padding: 0;
-  background-color: rgba(124, 252, 0, 0.8);
-}
-ol {
-  list-style: none;
-  padding: 0;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 50px 0;
-  border-bottom: 2px solid green;
-}
-
-.form {
-  display: flex;
-}
-
-.input {
-  width: 450px;
-  height: 46px;
-}
-
-.button {
-  display: block;
-  background-color: brown;
-  border: 1px solid tomato;
-  color: #fff;
-  padding: 10px 50px;
-  min-width: 150px;
-}
-
-.item {
-  display: flex;
   margin: 0 auto;
-  justify-content: space-between;
-  width: 80%;
-  background-color: #fff;
-  margin-bottom: 10px;
+  max-width: 800px;
+  padding: 0 20px;
 }
 
-.text {
-  border: 1px solid red;
-  flex-grow: 2;
-  line-height: 3;
-  margin: 0;
-  padding: 0 15px;
-  font-size: 20px;
+.container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
 }
 
-.checked {
-  opacity: 0.5;
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
 }
 
-.checked .text {
-  text-decoration: line-through;
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
-.list {
-  padding: 20px;
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right: 0;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
 }
