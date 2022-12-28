@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../firebase-config";
 import {
   getAuth,
+  signOut,
   signInWithPopup,
   GoogleAuthProvider,
   onAuthStateChanged,
@@ -9,6 +10,7 @@ import {
 import { showUserChat, hiddenUserChat } from "../main";
 
 const auth = getAuth();
+const provider = new GoogleAuthProvider();
 
 export const onSignInWithPopup = () => {
   signInWithPopup(auth, provider)

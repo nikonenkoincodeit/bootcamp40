@@ -1,7 +1,7 @@
-export const createObjMessage = (message = "", userId = 0) => {
+export const createObjMessage = (message = "", user) => {
   return {
     message,
-    userId,
+    user,
     dataMessage: Date.now(),
     file: {},
   };
