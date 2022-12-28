@@ -30,7 +30,7 @@ export const updateChat = (data) => {
     items = data.slice(sizeItems);
   }
   sizeItems = data.length;
-  const markup = createMessage(items);
+  const markup = createMessage(items, user.uid);
   addMessagesChat(markup);
   data.length = 0;
 };
