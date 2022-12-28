@@ -46,3 +46,38 @@ body {
   float: left;
   color: #999;
 }
+
+.box-chat {
+  max-height: calc(100vh - 252px);
+  overflow-y: auto;
+}
+
+.input-file {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  margin: -1px;
+  padding: 0;
+}
+
+.mess {
+  width: 100%;
+  min-height: 100px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  font-size: 14px;
+}
+
+header .container {
+  background: rgba(2, 23, 250, 0.452);
+  text-align: right;
+  margin: 0;
+}
+
+header .container .btn {
+  background: #fff;
+}
