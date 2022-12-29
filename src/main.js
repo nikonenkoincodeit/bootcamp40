@@ -60,8 +60,6 @@ const onSubmit = (e) => {
   if (!value) return;
   try {
     sendDataToFirebase(value, "message");
-    // const data = createObjMessage(value, user, "message");
-    // sendData(data);
     e.target.reset();
   } catch (error) {
     alert(error.message);
