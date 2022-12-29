@@ -48,7 +48,7 @@ body {
 }
 
 .box-chat {
-  max-height: calc(100vh - 252px);
+  height: calc(100vh - 280px);
   overflow-y: auto;
 }
 
@@ -80,4 +80,28 @@ header .container {
 
 header .container .btn {
   background: #fff;
+}
+
+.img-box {
+  width: 50%;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: #fff;
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.img-box.right {
+  margin-left: auto;
+}
+
+.img-time {
+  margin: 0;
+}
+
+.img-box .img {
+  width: 100%;
+  min-width: 100%;
+  margin-right: 0;
+  border-radius: 4px;
 }
